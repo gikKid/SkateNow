@@ -6,7 +6,7 @@ class SignBaseViewController: BaseViewController {
     let passwordTextField = UITextField()
     let confirmButton = UIButton()
     let errorLabel = UILabel()
-    let activityIndicator = UIActivityIndicatorView(style: .medium)
+    let childSpinner = SpinnerViewController()
     
     private enum UIConstants {
         static let leftAndRightSpaceTextField:CGFloat = 50
@@ -25,7 +25,6 @@ extension SignBaseViewController {
         self.view.addView(passwordTextField)
         self.view.addView(confirmButton)
         self.view.addView(errorLabel)
-        self.view.addView(activityIndicator)
     }
     
     override func configure() {
@@ -45,9 +44,6 @@ extension SignBaseViewController {
         errorLabel.textColor = .red
         errorLabel.font = .systemFont(ofSize: 12)
         errorLabel.isHidden = true
-        
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = .lightGray
     }
     
     override func layoutViews() {
@@ -66,8 +62,6 @@ extension SignBaseViewController {
             confirmButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
             errorLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             errorLabel.bottomAnchor.constraint(equalTo: emailTextField.topAnchor, constant: -10),
-            activityIndicator.centerYAnchor.constraint(equalTo: confirmButton.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: confirmButton.centerXAnchor)
         ])
     }
 }
@@ -75,6 +69,20 @@ extension SignBaseViewController {
 
 //MARK: - Methods
 extension SignBaseViewController {
+    
+    public func createSpinnerView() {
+        addChild(childSpinner)
+        childSpinner.view.frame = view.frame
+        view.addSubview(childSpinner.view)
+        childSpinner.didMove(toParent: self)
+    }
+    
+    public func hideSpinnerView() {
+        childSpinner.willMove(toParent: nil)
+        childSpinner.view.removeFromSuperview()
+        childSpinner.removeFromParent()
+    }
+    
     public func unvalidPassword() {
         self.setErrorLabel(text: Resources.Titles.unvalidPassword)
         self.deactivateConfirmButton()
@@ -87,7 +95,7 @@ extension SignBaseViewController {
     
     public func fetching() {
         self.confirmButton.isEnabled = false
-        self.activityIndicator.startAnimating()
+        self.createSpinnerView()
     }
     
     public func valid() {
@@ -102,7 +110,7 @@ extension SignBaseViewController {
     }
     
     public func activateConfirmButton() {
-        self.confirmButton.backgroundColor = .systemBlue
+        self.confirmButton.backgroundColor = UIColor(named: Resources.Colors.mainColor)
         self.confirmButton.isEnabled = true
     }
     
@@ -112,7 +120,7 @@ extension SignBaseViewController {
     }
     
     public func successFetching(messageText:String) {
-        self.activityIndicator.stopAnimating()
+        self.hideSpinnerView()
         self.present(self.createInfoAlert(message: messageText, title: Resources.Titles.success),animated: true)
     }
 }

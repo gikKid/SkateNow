@@ -19,4 +19,8 @@ enum Resources {
         static let password = "Write password"
         static let email = "Write email"
     }
+    
+    enum Colors {
+        static let mainColor = "mainColor"
+    }
 }

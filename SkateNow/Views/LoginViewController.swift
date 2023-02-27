@@ -27,8 +27,8 @@ extension LoginViewController {
         
         self.configureConfirmButton(signInButton, Resources.Titles.signIn)
         self.configureConfirmButton(signUpButton, Resources.Titles.signUp)
-        signUpButton.backgroundColor = .systemBlue
-        signInButton.backgroundColor = .systemBlue
+        signUpButton.backgroundColor = UIColor(named: Resources.Colors.mainColor)
+        signInButton.backgroundColor = UIColor(named: Resources.Colors.mainColor)
         signInButton.isEnabled = true
         signUpButton.isEnabled = true
         

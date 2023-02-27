@@ -10,6 +10,7 @@ class SignInViewController: SignBaseViewController {
         super.viewDidLoad()
         self.viewModel.errorSignInHandler = {[weak self] errorText in
             guard let self = self else {return}
+            self.hideSpinnerView()
             self.present(self.createInfoAlert(message: errorText, title: Resources.Titles.errorTitle),animated: true)
         }
         
@@ -92,7 +93,7 @@ extension SignInViewController {
     }
     
     private func successSignIn() {
-        self.activityIndicator.stopAnimating()
+        self.hideSpinnerView()
         //FIXME: - LOGIC TO SAVE USER DATA !!!
         self.navigationController?.setViewControllers([MenuViewController()], animated: true)
     }

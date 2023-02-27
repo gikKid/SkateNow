@@ -14,6 +14,7 @@ extension MenuViewController {
     
     override func configure() {
         super.configure()
+        
     }
     
     override func layoutViews() {

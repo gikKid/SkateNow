@@ -19,6 +19,7 @@ class BaseViewController: UIViewController {
     public func addViews() {}
     public func configure() {
         self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.barTintColor = .systemBackground
         self.view.backgroundColor = .systemBackground
     }
     public func layoutViews() {}
