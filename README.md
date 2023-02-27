@@ -2,4 +2,4 @@
 
 Private proj
 
-MVVM, Firebase auth
+MVVM, Firebase auth, Keychain
