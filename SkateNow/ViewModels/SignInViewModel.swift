@@ -46,13 +46,23 @@ final class SignInViewModel:NSObject {
         
         self.state = .fetching
         
-        Auth.auth().signIn(withEmail: user.email, password: user.password, completion: { [weak self] authResult, error in
+        Auth.auth().signIn(withEmail: user.email, password: user.password, completion: { [weak self] _, error in
             if let error = error {
                 self?.errorSignInHandler?(error.localizedDescription)
                 return
             }
+            self?.saveUserData()
             self?.state = .success
         })
     }
     
+    private func saveUserData() {
+        let defaults = UserDefaults.standard
+        defaults.set(true, forKey: Resources.Keys.isSignIn)
+        do {
+            try KeychainManager.save(service: Resources.Keys.service, email: user.email, password: user.password.data(using: .utf8) ?? Data())
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
 }

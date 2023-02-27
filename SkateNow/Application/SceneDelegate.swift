@@ -8,7 +8,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        
+        let defaults = UserDefaults.standard
+        let isSignInUser = defaults.bool(forKey: Resources.Keys.isSignIn)
+        if isSignInUser {
+            window?.rootViewController = UINavigationController(rootViewController: MenuViewController())
+        } else {
+            window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
+        }
         window?.makeKeyAndVisible()
     }
 

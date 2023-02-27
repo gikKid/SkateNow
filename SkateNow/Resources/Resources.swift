@@ -1,6 +1,16 @@
 import Foundation
+import UIKit
 
 enum Resources {
+    
+    enum Keys {
+        static let isSignIn = "isSignIn"
+        static let email = "EmailKey"
+        static let password = "passwordKey"
+        static let uid = "uidKey"
+        static let service = "Firebase"
+    }
+    
     enum Titles {
         static let errorTitle = "Error"
         static let confirmAlertActionTitle = "OK"
@@ -13,6 +23,11 @@ enum Resources {
         static let success = "Success"
         static let successRegisteringUser = "User was created!"
         static let confirm = "Confirm"
+        static let game = "Game"
+        static let study = "Study"
+        static let map = "Map"
+        static let menu = "Menu"
+        static let profile = "Profile"
     }
     
     enum Placeholders {
@@ -22,5 +37,16 @@ enum Resources {
     
     enum Colors {
         static let mainColor = "mainColor"
+    }
+    
+    enum Images {
+        static let game = "gamecontroller.fill"
+        static let study = "book.fill"
+        static let map = "map.fill"
+        static let person = "person.crop.circle"
+    }
+    
+    enum Identefiers {
+        static let menuCollecionViewCell = "menuCell"
     }
 }

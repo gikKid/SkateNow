@@ -57,7 +57,7 @@ final class SignUpViewModel:NSObject {
         
         self.state = .fetching
         
-        Auth.auth().createUser(withEmail: user.email, password: user.password, completion: {[weak self] authResult, error in
+        Auth.auth().createUser(withEmail: user.email, password: user.password, completion: {[weak self] _, error in
             if let error = error {
                 self?.errorRegisterHandler?(error.localizedDescription)
                 return

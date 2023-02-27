@@ -94,7 +94,6 @@ extension SignUpViewController {
     
     private func successCreating() {
         self.hideSpinnerView()
-        //FIXME: - LOGIC TO SAVE USER DATA !!!
         navigationController?.pushViewController(SignInViewController(), animated: true)
     }
 }
