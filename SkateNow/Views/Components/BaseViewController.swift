@@ -1,9 +1,14 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    
+    private enum UIConstants {
+        static let confirmButtonCornerRadius = 13.0
+        static let textFieldFont = 15.0
+        static let textFieldCornerRadius = 6.0
+    }
 
     override func viewDidLoad() {
-        super.viewDidLoad()
         self.addViews()
         self.configure()
         self.layoutViews()
@@ -13,13 +18,43 @@ class BaseViewController: UIViewController {
 @objc extension BaseViewController {
     public func addViews() {}
     public func configure() {
+        self.navigationController?.navigationBar.isHidden = false
         self.view.backgroundColor = .systemBackground
     }
     public func layoutViews() {}
     
-    public func createErrorAlert(errorMessage:String) -> UIAlertController {
-        let alert = UIAlertController(title: Resources.Titles.errorTitle, message: errorMessage, preferredStyle: .alert)
+    public func createInfoAlert(message:String, title:String) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: Resources.Titles.confirmAlertActionTitle, style: .default, handler: nil))
         return alert
+    }
+}
+
+extension BaseViewController {
+    public func configureConfirmButton(_ button: UIButton,_ title: String) {
+        button.setTitle(title, for: .normal)
+        button.layer.masksToBounds = true
+        button.isEnabled = false
+        button.layer.cornerRadius = UIConstants.confirmButtonCornerRadius
+        button.backgroundColor = .gray
+        button.setTitleColor(.white, for: .normal)
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+    }
+    
+    public func configureTextField(_ textField: UITextField,_ placeholderText:String) {
+        textField.attributedPlaceholder = NSAttributedString(string: placeholderText, attributes: [
+            NSAttributedString.Key.foregroundColor: UIColor.placeholderText ])
+        textField.layer.borderWidth = 1
+        textField.layer.masksToBounds = true
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.cornerRadius = UIConstants.textFieldCornerRadius
+        textField.font = UIFont.systemFont(ofSize: UIConstants.textFieldFont)
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.keyboardType = UIKeyboardType.default
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.clearButtonMode = UITextField.ViewMode.whileEditing;
+        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        textField.backgroundColor = .secondarySystemBackground
     }
 }

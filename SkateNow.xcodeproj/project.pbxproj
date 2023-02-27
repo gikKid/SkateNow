@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		540B6CB029AC9F89000EC244 /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CAF29AC9F89000EC244 /* Extension+UIView.swift */; };
+		540B6CB229ACA3B8000EC244 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB129ACA3B8000EC244 /* LoginViewModel.swift */; };
+		540B6CB429ACC6A2000EC244 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB329ACC6A2000EC244 /* User.swift */; };
+		540B6CB629ACC70E000EC244 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB529ACC70E000EC244 /* MenuViewController.swift */; };
+		540B6CB829ACDB60000EC244 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB729ACDB60000EC244 /* SignInViewModel.swift */; };
+		54534BE429AC22C100544CD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54534BE329AC22C100544CD2 /* GoogleService-Info.plist */; };
+		54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE529AC9C7600544CD2 /* SignInViewController.swift */; };
+		54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE729AC9C9800544CD2 /* SignUpViewController.swift */; };
+		54534BEA29AC9CEB00544CD2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE929AC9CEB00544CD2 /* SignUpViewModel.swift */; };
 		54935DAF29A6D61C002FF436 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DAE29A6D61C002FF436 /* AppDelegate.swift */; };
 		54935DB129A6D61C002FF436 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DB029A6D61C002FF436 /* SceneDelegate.swift */; };
 		54935DB829A6D622002FF436 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54935DB729A6D622002FF436 /* Assets.xcassets */; };
@@ -14,9 +23,19 @@
 		54935DC729A6DDBA002FF436 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DC629A6DDBA002FF436 /* BaseViewController.swift */; };
 		54935DCA29A6DE70002FF436 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DC929A6DE70002FF436 /* Resources.swift */; };
 		54935DCC29A6DFAA002FF436 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DCB29A6DFAA002FF436 /* LoginViewController.swift */; };
+		CEBBB204DFB7C2B8E48CF0CD /* Pods_SkateNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366698695C9F7206AA4C578 /* Pods_SkateNow.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		540B6CAF29AC9F89000EC244 /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		540B6CB129ACA3B8000EC244 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		540B6CB329ACC6A2000EC244 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		540B6CB529ACC70E000EC244 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		540B6CB729ACDB60000EC244 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		54534BE329AC22C100544CD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		54534BE529AC9C7600544CD2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		54534BE729AC9C9800544CD2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		54534BE929AC9CEB00544CD2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		54935DAB29A6D61C002FF436 /* SkateNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkateNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54935DAE29A6D61C002FF436 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54935DB029A6D61C002FF436 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +45,9 @@
 		54935DC629A6DDBA002FF436 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		54935DC929A6DE70002FF436 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		54935DCB29A6DFAA002FF436 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		9A9BFA8E51A232E6D340E17C /* Pods-SkateNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkateNow.debug.xcconfig"; path = "Target Support Files/Pods-SkateNow/Pods-SkateNow.debug.xcconfig"; sourceTree = "<group>"; };
+		D366698695C9F7206AA4C578 /* Pods_SkateNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkateNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBA2674F72AE882A15833E17 /* Pods-SkateNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkateNow.release.xcconfig"; path = "Target Support Files/Pods-SkateNow/Pods-SkateNow.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +55,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBBB204DFB7C2B8E48CF0CD /* Pods_SkateNow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		540B6CAE29AC9F77000EC244 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				540B6CAF29AC9F89000EC244 /* Extension+UIView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		54935DA229A6D61C002FF436 = {
 			isa = PBXGroup;
 			children = (
 				54935DAD29A6D61C002FF436 /* SkateNow */,
 				54935DAC29A6D61C002FF436 /* Products */,
+				9FF803BFF8B6AF43278D2425 /* Pods */,
+				C9AD04B1130809669A9A90C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +91,7 @@
 		54935DAD29A6D61C002FF436 /* SkateNow */ = {
 			isa = PBXGroup;
 			children = (
+				540B6CAE29AC9F77000EC244 /* Extensions */,
 				54935DC829A6DE5D002FF436 /* Resources */,
 				54935DC529A6D844002FF436 /* Models */,
 				54935DC429A6D836002FF436 /* ViewModels */,
@@ -75,6 +109,7 @@
 				54935DB029A6D61C002FF436 /* SceneDelegate.swift */,
 				54935DAE29A6D61C002FF436 /* AppDelegate.swift */,
 				54935DBC29A6D622002FF436 /* Info.plist */,
+				54534BE329AC22C100544CD2 /* GoogleService-Info.plist */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -85,6 +120,9 @@
 				54935DCE29A6DFE3002FF436 /* Components */,
 				54935DCD29A6DFDB002FF436 /* Cells */,
 				54935DCB29A6DFAA002FF436 /* LoginViewController.swift */,
+				54534BE529AC9C7600544CD2 /* SignInViewController.swift */,
+				54534BE729AC9C9800544CD2 /* SignUpViewController.swift */,
+				540B6CB529ACC70E000EC244 /* MenuViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -92,6 +130,9 @@
 		54935DC429A6D836002FF436 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				54534BE929AC9CEB00544CD2 /* SignUpViewModel.swift */,
+				540B6CB129ACA3B8000EC244 /* LoginViewModel.swift */,
+				540B6CB729ACDB60000EC244 /* SignInViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -99,6 +140,7 @@
 		54935DC529A6D844002FF436 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				540B6CB329ACC6A2000EC244 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -126,6 +168,23 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		9FF803BFF8B6AF43278D2425 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A9BFA8E51A232E6D340E17C /* Pods-SkateNow.debug.xcconfig */,
+				FBA2674F72AE882A15833E17 /* Pods-SkateNow.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C9AD04B1130809669A9A90C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D366698695C9F7206AA4C578 /* Pods_SkateNow.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,9 +192,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 54935DBF29A6D622002FF436 /* Build configuration list for PBXNativeTarget "SkateNow" */;
 			buildPhases = (
+				2DC8B49F177430771C1FE837 /* [CP] Check Pods Manifest.lock */,
 				54935DA729A6D61C002FF436 /* Sources */,
 				54935DA829A6D61C002FF436 /* Frameworks */,
 				54935DA929A6D61C002FF436 /* Resources */,
+				C40A0AD5950CB1F8A04260EA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -186,10 +247,53 @@
 			files = (
 				54935DBB29A6D622002FF436 /* LaunchScreen.storyboard in Resources */,
 				54935DB829A6D622002FF436 /* Assets.xcassets in Resources */,
+				54534BE429AC22C100544CD2 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2DC8B49F177430771C1FE837 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SkateNow-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C40A0AD5950CB1F8A04260EA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SkateNow/Pods-SkateNow-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SkateNow/Pods-SkateNow-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SkateNow/Pods-SkateNow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		54935DA729A6D61C002FF436 /* Sources */ = {
@@ -197,10 +301,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				54935DAF29A6D61C002FF436 /* AppDelegate.swift in Sources */,
+				54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */,
+				54534BEA29AC9CEB00544CD2 /* SignUpViewModel.swift in Sources */,
 				54935DCA29A6DE70002FF436 /* Resources.swift in Sources */,
+				540B6CB829ACDB60000EC244 /* SignInViewModel.swift in Sources */,
+				540B6CB429ACC6A2000EC244 /* User.swift in Sources */,
+				54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */,
 				54935DB129A6D61C002FF436 /* SceneDelegate.swift in Sources */,
+				540B6CB629ACC70E000EC244 /* MenuViewController.swift in Sources */,
 				54935DCC29A6DFAA002FF436 /* LoginViewController.swift in Sources */,
 				54935DC729A6DDBA002FF436 /* BaseViewController.swift in Sources */,
+				540B6CB229ACA3B8000EC244 /* LoginViewModel.swift in Sources */,
+				540B6CB029AC9F89000EC244 /* Extension+UIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +448,7 @@
 		};
 		54935DC029A6D622002FF436 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A9BFA8E51A232E6D340E17C /* Pods-SkateNow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -363,6 +476,7 @@
 		};
 		54935DC129A6D622002FF436 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBA2674F72AE882A15833E17 /* Pods-SkateNow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
