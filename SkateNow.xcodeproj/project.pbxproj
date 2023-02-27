@@ -12,6 +12,7 @@
 		540B6CB429ACC6A2000EC244 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB329ACC6A2000EC244 /* User.swift */; };
 		540B6CB629ACC70E000EC244 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB529ACC70E000EC244 /* MenuViewController.swift */; };
 		540B6CB829ACDB60000EC244 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB729ACDB60000EC244 /* SignInViewModel.swift */; };
+		540B6CBA29ACDE3C000EC244 /* SignBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB929ACDE3C000EC244 /* SignBaseViewController.swift */; };
 		54534BE429AC22C100544CD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54534BE329AC22C100544CD2 /* GoogleService-Info.plist */; };
 		54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE529AC9C7600544CD2 /* SignInViewController.swift */; };
 		54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE729AC9C9800544CD2 /* SignUpViewController.swift */; };
@@ -32,6 +33,7 @@
 		540B6CB329ACC6A2000EC244 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		540B6CB529ACC70E000EC244 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		540B6CB729ACDB60000EC244 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		540B6CB929ACDE3C000EC244 /* SignBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignBaseViewController.swift; sourceTree = "<group>"; };
 		54534BE329AC22C100544CD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54534BE529AC9C7600544CD2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		54534BE729AC9C9800544CD2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				54935DC629A6DDBA002FF436 /* BaseViewController.swift */,
+				540B6CB929ACDE3C000EC244 /* SignBaseViewController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540B6CBA29ACDE3C000EC244 /* SignBaseViewController.swift in Sources */,
 				54935DAF29A6D61C002FF436 /* AppDelegate.swift in Sources */,
 				54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */,
 				54534BEA29AC9CEB00544CD2 /* SignUpViewModel.swift in Sources */,

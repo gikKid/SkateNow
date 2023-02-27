@@ -21,7 +21,9 @@ final class SignUpViewModel:NSObject {
     var errorRegisterHandler: ((String) -> Void)?
     
     public func passwordPassed(_ password:String?) {
-        guard let password = password else {return}
+        guard let password = password else {
+            self.state = .unvalidPassword
+            return}
 
         if password.trimmingCharacters(in: .whitespacesAndNewlines).count < 6 {
             self.state = .unvalidPassword
@@ -32,9 +34,10 @@ final class SignUpViewModel:NSObject {
     }
     
     public func emailPassed(_ email: String?) {
-        guard let email = email else {return}
+        guard let email = email else {
+            self.state = .unvalidEmail
+            return}
 
-        
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
         
         if !isValidRegEx(regexStr: emailRegEx, object: email) {
@@ -60,7 +63,6 @@ final class SignUpViewModel:NSObject {
                 return
             }
             self?.state = .success
-            
         })
     }
 }

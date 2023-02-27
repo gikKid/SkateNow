@@ -12,6 +12,7 @@ enum Resources {
         static let unvalidEmail = "Email is unvalid"
         static let success = "Success"
         static let successRegisteringUser = "User was created!"
+        static let confirm = "Confirm"
     }
     
     enum Placeholders {
