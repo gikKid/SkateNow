@@ -2,4 +2,4 @@ Podfile
 Podfile.lock
 Pods
 SkateNow.xcworkspace
-SkateNow/Resources/PrivateResources.swift
+PrivateResources.swift
