@@ -15,13 +15,13 @@ class BaseAccountViewController: BaseViewController {
         handle = Auth.auth().addStateDidChangeListener({[weak self]  _, user in
             guard let self = self else {return}
             guard let user = user else {
-                print("no user")
-                self.navigationController?.setViewControllers([LoginViewController()], animated: true)
+                let alert = UIAlertController(title: Resources.Titles.errorTitle, message: "Coudnt sign in", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Reconnect", style: .default, handler: {_ in
+                    self.navigationController?.setViewControllers([LoginViewController()], animated: true)
+                }))
                 return
             }
             self.currentUser = UserFirebase(authData: user)
-            print(user.uid)
-            print(user.email)
         })
     }
     

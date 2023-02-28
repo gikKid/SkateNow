@@ -11,8 +11,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let defaults = UserDefaults.standard
         let isSignInUser = defaults.bool(forKey: Resources.Keys.isSignIn)
-        if isSignInUser {
+        let isChoosenTransport = defaults.bool(forKey: Resources.Keys.isChoosenTransport)
+        
+        if isChoosenTransport && isSignInUser {
             window?.rootViewController = UINavigationController(rootViewController: MenuViewController())
+        } else if (isChoosenTransport == false && isSignInUser == true) {
+            window?.rootViewController = UINavigationController(rootViewController: TransportViewController())
         } else {
             window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         }

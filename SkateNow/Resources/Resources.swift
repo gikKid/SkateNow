@@ -9,6 +9,7 @@ enum Resources {
         static let password = "passwordKey"
         static let uid = "uidKey"
         static let service = "Firebase"
+        static let isChoosenTransport = "transportKey"
     }
     
     enum Titles {
@@ -28,6 +29,10 @@ enum Resources {
         static let map = "Map"
         static let menu = "Menu"
         static let profile = "Profile"
+        static let scateboard = "Scateboard"
+        static let scooter = "Scooter"
+        static let bmx = "BMX"
+        static let getStarted = "Get started"
     }
     
     enum Placeholders {
@@ -44,6 +49,10 @@ enum Resources {
         static let study = "book.fill"
         static let map = "map.fill"
         static let person = "person.crop.circle"
+        static let scateboard = "skateboard"
+        static let scooter = "scooter"
+        static let bmx = "bmx"
+        static let downTriangle = "arrowtriangle.down.fill"
     }
     
     enum Identefiers {

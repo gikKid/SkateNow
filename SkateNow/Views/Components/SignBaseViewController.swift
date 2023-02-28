@@ -6,7 +6,6 @@ class SignBaseViewController: BaseViewController {
     let passwordTextField = UITextField()
     let confirmButton = UIButton()
     let errorLabel = UILabel()
-    let childSpinner = SpinnerViewController()
     
     private enum UIConstants {
         static let leftAndRightSpaceTextField:CGFloat = 50
@@ -69,19 +68,6 @@ extension SignBaseViewController {
 
 //MARK: - Methods
 extension SignBaseViewController {
-    
-    public func createSpinnerView() {
-        addChild(childSpinner)
-        childSpinner.view.frame = view.frame
-        view.addSubview(childSpinner.view)
-        childSpinner.didMove(toParent: self)
-    }
-    
-    public func hideSpinnerView() {
-        childSpinner.willMove(toParent: nil)
-        childSpinner.view.removeFromSuperview()
-        childSpinner.removeFromParent()
-    }
     
     public func unvalidPassword() {
         self.setErrorLabel(text: Resources.Titles.unvalidPassword)

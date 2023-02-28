@@ -1,4 +1,4 @@
-import Foundation
+import FirebaseFirestore
 import FirebaseAuth
 
 enum SignInState {
@@ -7,7 +7,8 @@ enum SignInState {
     case valid
     case unvalid
     case fetching
-    case success
+    case successSignInNewUser
+    case successSignIn
 }
 
 final class SignInViewModel:NSObject {
@@ -47,12 +48,36 @@ final class SignInViewModel:NSObject {
         self.state = .fetching
         
         Auth.auth().signIn(withEmail: user.email, password: user.password, completion: { [weak self] _, error in
+            guard let self = self else {return}
             if let error = error {
-                self?.errorSignInHandler?(error.localizedDescription)
+                self.errorSignInHandler?(error.localizedDescription)
                 return
             }
-            self?.saveUserData()
-            self?.state = .success
+            
+            let db = Firestore.firestore()
+            
+            let docData:[String:Any] = [
+                PrivateResources.usersNameKey: self.user.email.prefix(5),
+                PrivateResources.usersVisitedSpotsKey: [""],
+                PrivateResources.usersTransportKey: "",
+                PrivateResources.usersDoneTricksKey: [""]
+            ]
+            
+            let usersDocumentsRef = db.collection(PrivateResources.usersCollection)
+            usersDocumentsRef.document(self.user.email.lowercased()).getDocument(completion: { (document, error) in
+                if let document = document, !document.exists {
+                    usersDocumentsRef.document(self.user.email.lowercased()).setData(docData) { err in
+                        if let err = err {
+                            self.errorSignInHandler?("Error create user: \(err.localizedDescription)")
+                            return
+                        }
+                        self.saveUserData()
+                        self.state = .successSignInNewUser
+                    }
+                } else {
+                    
+                }
+            })
         })
     }
     

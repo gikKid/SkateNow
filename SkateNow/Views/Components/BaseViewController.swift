@@ -2,6 +2,8 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    let childSpinner = SpinnerViewController()
+    
     private enum UIConstants {
         static let confirmButtonCornerRadius = 13.0
         static let textFieldFont = 15.0
@@ -58,4 +60,18 @@ extension BaseViewController {
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         textField.backgroundColor = .secondarySystemBackground
     }
+    
+    public func createSpinnerView() {
+        addChild(childSpinner)
+        childSpinner.view.frame = view.frame
+        view.addSubview(childSpinner.view)
+        childSpinner.didMove(toParent: self)
+    }
+    
+    public func hideSpinnerView() {
+        childSpinner.willMove(toParent: nil)
+        childSpinner.view.removeFromSuperview()
+        childSpinner.removeFromParent()
+    }
+    
 }

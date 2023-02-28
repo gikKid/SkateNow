@@ -12,6 +12,7 @@ class SignInViewController: SignBaseViewController {
             guard let self = self else {return}
             self.hideSpinnerView()
             self.present(self.createInfoAlert(message: errorText, title: Resources.Titles.errorTitle),animated: true)
+            self.activateConfirmButton()
         }
         
         self.viewModel.handleState = {[weak self] state in
@@ -29,8 +30,11 @@ class SignInViewController: SignBaseViewController {
             case .valid:
                 self.valid()
                 break
-            case .success:
-                self.successSignIn()
+            case .successSignInNewUser:
+                self.successSignInNewUser()
+                break
+            case .successSignIn:
+                self.navigationController?.setViewControllers([MenuViewController()], animated: true)
                 break
             default:
                 break
@@ -92,8 +96,8 @@ extension SignInViewController {
         self.viewModel.sendSignInRequest()
     }
     
-    private func successSignIn() {
+    private func successSignInNewUser() {
         self.hideSpinnerView()
-        self.navigationController?.setViewControllers([MenuViewController()], animated: true)
+        self.navigationController?.setViewControllers([TransportViewController()], animated: true)
     }
 }

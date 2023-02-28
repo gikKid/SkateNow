@@ -20,6 +20,9 @@
 		540B6CBE29ACFF16000EC244 /* BaseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */; };
 		5430E0E329AD46D0006E815F /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */; };
 		5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E0E429AD4AE7006E815F /* ProfileViewController.swift */; };
+		543EFD9629AE08EE00949827 /* PrivateResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543EFD9529AE08EE00949827 /* PrivateResources.swift */; };
+		543EFD9829AE0AE000949827 /* TransportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543EFD9729AE0AE000949827 /* TransportViewController.swift */; };
+		543EFD9A29AE11F100949827 /* TransportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543EFD9929AE11F100949827 /* TransportViewModel.swift */; };
 		54534BE429AC22C100544CD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54534BE329AC22C100544CD2 /* GoogleService-Info.plist */; };
 		54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE529AC9C7600544CD2 /* SignInViewController.swift */; };
 		54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE729AC9C9800544CD2 /* SignUpViewController.swift */; };
@@ -48,6 +51,9 @@
 		540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAccountViewController.swift; sourceTree = "<group>"; };
 		5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		5430E0E429AD4AE7006E815F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		543EFD9529AE08EE00949827 /* PrivateResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateResources.swift; sourceTree = "<group>"; };
+		543EFD9729AE0AE000949827 /* TransportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportViewController.swift; sourceTree = "<group>"; };
+		543EFD9929AE11F100949827 /* TransportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportViewModel.swift; sourceTree = "<group>"; };
 		54534BE329AC22C100544CD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54534BE529AC9C7600544CD2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		54534BE729AC9C9800544CD2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +155,7 @@
 				54534BE729AC9C9800544CD2 /* SignUpViewController.swift */,
 				540B6CB529ACC70E000EC244 /* MenuViewController.swift */,
 				5430E0E429AD4AE7006E815F /* ProfileViewController.swift */,
+				543EFD9729AE0AE000949827 /* TransportViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,6 +167,7 @@
 				540B6CB129ACA3B8000EC244 /* LoginViewModel.swift */,
 				540B6CB729ACDB60000EC244 /* SignInViewModel.swift */,
 				54028CA429AD18230047E9A9 /* MenuViewModel.swift */,
+				543EFD9929AE11F100949827 /* TransportViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -177,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				54935DC929A6DE70002FF436 /* Resources.swift */,
+				543EFD9529AE08EE00949827 /* PrivateResources.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -333,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				540B6CBA29ACDE3C000EC244 /* SignBaseViewController.swift in Sources */,
+				543EFD9629AE08EE00949827 /* PrivateResources.swift in Sources */,
 				54028C9F29AD108F0047E9A9 /* MenuCellOption.swift in Sources */,
 				540B6CBE29ACFF16000EC244 /* BaseAccountViewController.swift in Sources */,
 				54028CA529AD18230047E9A9 /* MenuViewModel.swift in Sources */,
@@ -343,12 +353,14 @@
 				54935DCA29A6DE70002FF436 /* Resources.swift in Sources */,
 				540B6CB829ACDB60000EC244 /* SignInViewModel.swift in Sources */,
 				540B6CB429ACC6A2000EC244 /* User.swift in Sources */,
+				543EFD9A29AE11F100949827 /* TransportViewModel.swift in Sources */,
 				54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */,
 				54935DB129A6D61C002FF436 /* SceneDelegate.swift in Sources */,
 				540B6CB629ACC70E000EC244 /* MenuViewController.swift in Sources */,
 				54028CA829AD221D0047E9A9 /* KeychainManager.swift in Sources */,
 				54935DCC29A6DFAA002FF436 /* LoginViewController.swift in Sources */,
 				54935DC729A6DDBA002FF436 /* BaseViewController.swift in Sources */,
+				543EFD9829AE0AE000949827 /* TransportViewController.swift in Sources */,
 				540B6CB229ACA3B8000EC244 /* LoginViewModel.swift in Sources */,
 				5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */,
 				540B6CB029AC9F89000EC244 /* Extension+UIView.swift in Sources */,
