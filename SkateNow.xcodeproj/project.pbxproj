@@ -18,6 +18,7 @@
 		540B6CBA29ACDE3C000EC244 /* SignBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB929ACDE3C000EC244 /* SignBaseViewController.swift */; };
 		540B6CBC29ACF1C9000EC244 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CBB29ACF1C9000EC244 /* SpinnerViewController.swift */; };
 		540B6CBE29ACFF16000EC244 /* BaseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */; };
+		542E315229AEBA1500C1E786 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542E315129AEBA1500C1E786 /* MapViewController.swift */; };
 		5430E0E329AD46D0006E815F /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */; };
 		5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E0E429AD4AE7006E815F /* ProfileViewController.swift */; };
 		543EFD9629AE08EE00949827 /* PrivateResources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543EFD9529AE08EE00949827 /* PrivateResources.swift */; };
@@ -34,6 +35,10 @@
 		54935DC729A6DDBA002FF436 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DC629A6DDBA002FF436 /* BaseViewController.swift */; };
 		54935DCA29A6DE70002FF436 /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DC929A6DE70002FF436 /* Resources.swift */; };
 		54935DCC29A6DFAA002FF436 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DCB29A6DFAA002FF436 /* LoginViewController.swift */; };
+		54E2911629AF7D3C004AB99A /* Extension+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E2911529AF7D3B004AB99A /* Extension+MKMapView.swift */; };
+		54E2911829AF7DD2004AB99A /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E2911729AF7DD2004AB99A /* MapViewModel.swift */; };
+		54E2911A29AF8C88004AB99A /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E2911929AF8C88004AB99A /* Spot.swift */; };
+		54E2911D29AFA102004AB99A /* SpotMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E2911C29AFA102004AB99A /* SpotMarkerView.swift */; };
 		CEBBB204DFB7C2B8E48CF0CD /* Pods_SkateNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D366698695C9F7206AA4C578 /* Pods_SkateNow.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +54,7 @@
 		540B6CB929ACDE3C000EC244 /* SignBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignBaseViewController.swift; sourceTree = "<group>"; };
 		540B6CBB29ACF1C9000EC244 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAccountViewController.swift; sourceTree = "<group>"; };
+		542E315129AEBA1500C1E786 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		5430E0E429AD4AE7006E815F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		543EFD9529AE08EE00949827 /* PrivateResources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateResources.swift; sourceTree = "<group>"; };
@@ -67,6 +73,10 @@
 		54935DC629A6DDBA002FF436 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		54935DC929A6DE70002FF436 /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		54935DCB29A6DFAA002FF436 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		54E2911529AF7D3B004AB99A /* Extension+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+MKMapView.swift"; sourceTree = "<group>"; };
+		54E2911729AF7DD2004AB99A /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		54E2911929AF8C88004AB99A /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
+		54E2911C29AFA102004AB99A /* SpotMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotMarkerView.swift; sourceTree = "<group>"; };
 		9A9BFA8E51A232E6D340E17C /* Pods-SkateNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkateNow.debug.xcconfig"; path = "Target Support Files/Pods-SkateNow/Pods-SkateNow.debug.xcconfig"; sourceTree = "<group>"; };
 		D366698695C9F7206AA4C578 /* Pods_SkateNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SkateNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA2674F72AE882A15833E17 /* Pods-SkateNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SkateNow.release.xcconfig"; path = "Target Support Files/Pods-SkateNow/Pods-SkateNow.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				540B6CAF29AC9F89000EC244 /* Extension+UIView.swift */,
+				54E2911529AF7D3B004AB99A /* Extension+MKMapView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -148,14 +159,10 @@
 		54935DC329A6D81D002FF436 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				54E2911B29AFA0AA004AB99A /* ViewControllers */,
 				54935DCE29A6DFE3002FF436 /* Components */,
 				54935DCD29A6DFDB002FF436 /* Cells */,
-				54935DCB29A6DFAA002FF436 /* LoginViewController.swift */,
-				54534BE529AC9C7600544CD2 /* SignInViewController.swift */,
-				54534BE729AC9C9800544CD2 /* SignUpViewController.swift */,
-				540B6CB529ACC70E000EC244 /* MenuViewController.swift */,
-				5430E0E429AD4AE7006E815F /* ProfileViewController.swift */,
-				543EFD9729AE0AE000949827 /* TransportViewController.swift */,
+				54E2911C29AFA102004AB99A /* SpotMarkerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -168,6 +175,7 @@
 				540B6CB729ACDB60000EC244 /* SignInViewModel.swift */,
 				54028CA429AD18230047E9A9 /* MenuViewModel.swift */,
 				543EFD9929AE11F100949827 /* TransportViewModel.swift */,
+				54E2911729AF7DD2004AB99A /* MapViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -177,6 +185,7 @@
 			children = (
 				540B6CB329ACC6A2000EC244 /* User.swift */,
 				54028C9E29AD108F0047E9A9 /* MenuCellOption.swift */,
+				54E2911929AF8C88004AB99A /* Spot.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,6 +216,20 @@
 				540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		54E2911B29AFA0AA004AB99A /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				54935DCB29A6DFAA002FF436 /* LoginViewController.swift */,
+				54534BE529AC9C7600544CD2 /* SignInViewController.swift */,
+				54534BE729AC9C9800544CD2 /* SignUpViewController.swift */,
+				540B6CB529ACC70E000EC244 /* MenuViewController.swift */,
+				5430E0E429AD4AE7006E815F /* ProfileViewController.swift */,
+				543EFD9729AE0AE000949827 /* TransportViewController.swift */,
+				542E315129AEBA1500C1E786 /* MapViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		9FF803BFF8B6AF43278D2425 /* Pods */ = {
@@ -349,6 +372,7 @@
 				54935DAF29A6D61C002FF436 /* AppDelegate.swift in Sources */,
 				54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */,
 				54534BEA29AC9CEB00544CD2 /* SignUpViewModel.swift in Sources */,
+				542E315229AEBA1500C1E786 /* MapViewController.swift in Sources */,
 				540B6CBC29ACF1C9000EC244 /* SpinnerViewController.swift in Sources */,
 				54935DCA29A6DE70002FF436 /* Resources.swift in Sources */,
 				540B6CB829ACDB60000EC244 /* SignInViewModel.swift in Sources */,
@@ -359,12 +383,16 @@
 				540B6CB629ACC70E000EC244 /* MenuViewController.swift in Sources */,
 				54028CA829AD221D0047E9A9 /* KeychainManager.swift in Sources */,
 				54935DCC29A6DFAA002FF436 /* LoginViewController.swift in Sources */,
+				54E2911A29AF8C88004AB99A /* Spot.swift in Sources */,
+				54E2911D29AFA102004AB99A /* SpotMarkerView.swift in Sources */,
 				54935DC729A6DDBA002FF436 /* BaseViewController.swift in Sources */,
 				543EFD9829AE0AE000949827 /* TransportViewController.swift in Sources */,
+				54E2911629AF7D3C004AB99A /* Extension+MKMapView.swift in Sources */,
 				540B6CB229ACA3B8000EC244 /* LoginViewModel.swift in Sources */,
 				5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */,
 				540B6CB029AC9F89000EC244 /* Extension+UIView.swift in Sources */,
 				5430E0E329AD46D0006E815F /* MenuCollectionViewCell.swift in Sources */,
+				54E2911829AF7DD2004AB99A /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

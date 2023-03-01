@@ -2,15 +2,16 @@ import UIKit
 
 class TransportViewController: BaseAccountViewController {
     let scooterImageView = UIImageView()
-    let scateboardImageView = UIImageView()
+    let skateboardImageView = UIImageView()
     let bmxImageView = UIImageView()
-    let scateboardStackView = UIStackView()
+    let skateboardStackView = UIStackView()
     let scooterStackView = UIStackView()
     let bmxStackView = UIStackView()
     let confirmButton = UIButton()
-    let scateBoardDownTriangleImageView = UIImageView()
+    let skateBoardDownTriangleImageView = UIImageView()
     let scooterDownTriangleImageView = UIImageView()
     let bmxDownTriangleImageView = UIImageView()
+    let topTextLabel = UILabel()
     
     lazy var viewModel = {
        TransportViewModel()
@@ -49,38 +50,39 @@ class TransportViewController: BaseAccountViewController {
 extension TransportViewController {
     override func addViews() {
         super.addViews()
-        view.addView(scateboardStackView)
+        view.addView(skateboardStackView)
         view.addView(scooterStackView)
         view.addView(bmxStackView)
         view.addView(confirmButton)
-        view.addView(scateBoardDownTriangleImageView)
+        view.addView(skateBoardDownTriangleImageView)
         view.addView(scooterDownTriangleImageView)
         view.addView(bmxDownTriangleImageView)
+        view.addView(topTextLabel)
     }
     
     override func configure() {
         super.configure()
         navigationController?.navigationBar.isHidden = true
         
-        self.configureVertStackView(scateboardStackView)
+        self.configureVertStackView(skateboardStackView)
         self.configureVertStackView(bmxStackView)
         self.configureVertStackView(scooterStackView)
-        self.configureDownTriangleImageView(scateBoardDownTriangleImageView)
+        self.configureDownTriangleImageView(skateBoardDownTriangleImageView)
         self.configureDownTriangleImageView(scooterDownTriangleImageView)
         self.configureDownTriangleImageView(bmxDownTriangleImageView)
         
-        let scateboardLabel = UILabel()
-        scateboardLabel.text = Resources.Titles.scateboard.uppercased()
-        scateboardLabel.font = .boldSystemFont(ofSize: 16)
+        let skateboardLabel = UILabel()
+        skateboardLabel.text = Resources.Titles.skateboard.uppercased()
+        skateboardLabel.font = .boldSystemFont(ofSize: 16)
         
-        scateboardImageView.image = UIImage(named: Resources.Images.scateboard)
-        scateboardImageView.contentMode = .scaleAspectFit
-        scateboardImageView.layer.masksToBounds = true
-        scateboardStackView.addArrangedSubview(scateboardImageView)
-        scateboardStackView.addArrangedSubview(scateboardLabel)
+        skateboardImageView.image = UIImage(named: Resources.Images.skateboard)
+        skateboardImageView.contentMode = .scaleAspectFit
+        skateboardImageView.layer.masksToBounds = true
+        skateboardStackView.addArrangedSubview(skateboardImageView)
+        skateboardStackView.addArrangedSubview(skateboardLabel)
         
-        let scateboardGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(scateboardTapped(_:)))
-        scateboardStackView.addGestureRecognizer(scateboardGestureRecogn)
+        let skateboardGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(skateboardTapped(_:)))
+        skateboardStackView.addGestureRecognizer(skateboardGestureRecogn)
         
         let scooterLabel = UILabel()
         scooterLabel.text = Resources.Titles.scooter.uppercased()
@@ -108,17 +110,20 @@ extension TransportViewController {
         
         self.configureConfirmButton(confirmButton, Resources.Titles.getStarted)
         confirmButton.addTarget(self, action: #selector(confirmButtonTapped(_:)), for: .touchUpInside)
+        
+        topTextLabel.text = "What are you choose?"
+        topTextLabel.font = .boldSystemFont(ofSize: 25)
     }
     
     override func layoutViews() {
         super.layoutViews()
         NSLayoutConstraint.activate([
-            scateboardStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            scateboardStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            skateboardStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            skateboardStackView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             scooterImageView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 5),
             scooterImageView.heightAnchor.constraint(equalTo: scooterImageView.widthAnchor),
-            scateboardImageView.widthAnchor.constraint(equalTo: scooterImageView.widthAnchor),
-            scateboardImageView.heightAnchor.constraint(equalTo: scooterImageView.heightAnchor),
+            skateboardImageView.widthAnchor.constraint(equalTo: scooterImageView.widthAnchor),
+            skateboardImageView.heightAnchor.constraint(equalTo: scooterImageView.heightAnchor),
             scooterStackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 20),
             scooterStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             bmxImageView.widthAnchor.constraint(equalTo: scooterImageView.widthAnchor),
@@ -127,12 +132,14 @@ extension TransportViewController {
             bmxStackView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             confirmButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             confirmButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
-            scateBoardDownTriangleImageView.centerXAnchor.constraint(equalTo: scateboardStackView.centerXAnchor),
-            scateBoardDownTriangleImageView.bottomAnchor.constraint(equalTo: scateboardStackView.topAnchor, constant: -15),
+            skateBoardDownTriangleImageView.centerXAnchor.constraint(equalTo: skateboardStackView.centerXAnchor),
+            skateBoardDownTriangleImageView.bottomAnchor.constraint(equalTo: skateboardStackView.topAnchor, constant: -15),
             scooterDownTriangleImageView.centerXAnchor.constraint(equalTo: scooterStackView.centerXAnchor),
-            scooterDownTriangleImageView.bottomAnchor.constraint(equalTo: scateBoardDownTriangleImageView.bottomAnchor),
+            scooterDownTriangleImageView.bottomAnchor.constraint(equalTo: skateBoardDownTriangleImageView.bottomAnchor),
             bmxDownTriangleImageView.centerXAnchor.constraint(equalTo: bmxStackView.centerXAnchor),
-            bmxDownTriangleImageView.bottomAnchor.constraint(equalTo: scateBoardDownTriangleImageView.bottomAnchor)
+            bmxDownTriangleImageView.bottomAnchor.constraint(equalTo: skateBoardDownTriangleImageView.bottomAnchor),
+            topTextLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            topTextLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ])
     }
 }
@@ -168,22 +175,22 @@ extension TransportViewController {
     }
     
     @objc private func scooterTapped(_ sender:UITapGestureRecognizer) {
-        scateBoardDownTriangleImageView.isHidden = true
+        skateBoardDownTriangleImageView.isHidden = true
         bmxDownTriangleImageView.isHidden = true
         scooterDownTriangleImageView.isHidden = false
         self.viewModel.setTransport(transport: Transport.scooter)
     }
     
-    @objc private func scateboardTapped(_ sender:UITapGestureRecognizer) {
+    @objc private func skateboardTapped(_ sender:UITapGestureRecognizer) {
         bmxDownTriangleImageView.isHidden = true
         scooterDownTriangleImageView.isHidden = true
-        scateBoardDownTriangleImageView.isHidden = false
+        skateBoardDownTriangleImageView.isHidden = false
         self.viewModel.setTransport(transport: Transport.skate)
     }
     
     @objc private func bmxTapped(_ sender:UITapGestureRecognizer) {
         scooterDownTriangleImageView.isHidden = true
-        scateBoardDownTriangleImageView.isHidden = true
+        skateBoardDownTriangleImageView.isHidden = true
         bmxDownTriangleImageView.isHidden = false
         self.viewModel.setTransport(transport: Transport.bmx)
     }

@@ -1,6 +1,9 @@
 import UIKit
 
 class ProfileViewController: BaseAccountViewController {
+    
+    let backgroundImageView = UIImageView()
+    let userAvatarImageView = UIImageView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
