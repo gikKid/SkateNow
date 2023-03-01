@@ -30,6 +30,7 @@ class TransportViewController: BaseAccountViewController {
                 self.present(self.createInfoAlert(message: "Nothing was chosen", title: Resources.Titles.errorTitle),animated: true)
                 break
             case .beforeChoosen:
+                self.viewModel.saveUserDef()
                 self.navigationController?.setViewControllers([MenuViewController()], animated: true)
                 break
             case .fetching:
@@ -141,6 +142,10 @@ extension TransportViewController {
             topTextLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
             topTextLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ])
+    }
+    
+    override func userDataUpdate() {
+        viewModel.viewDidLoad(userEmail: super.currentUser?.email)
     }
 }
 

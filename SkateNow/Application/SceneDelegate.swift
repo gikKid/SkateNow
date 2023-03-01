@@ -12,6 +12,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let defaults = UserDefaults.standard
         let isSignInUser = defaults.bool(forKey: Resources.Keys.isSignIn)
         let isChoosenTransport = defaults.bool(forKey: Resources.Keys.isChoosenTransport)
+        let isDarkTheme = defaults.bool(forKey: Resources.Keys.isDarkTheme)
+        
+        window?.overrideUserInterfaceStyle = isDarkTheme ? .dark : .light
         
         if isChoosenTransport && isSignInUser {
             window?.rootViewController = UINavigationController(rootViewController: MenuViewController())

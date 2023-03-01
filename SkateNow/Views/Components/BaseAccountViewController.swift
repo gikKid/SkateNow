@@ -4,7 +4,11 @@ import FirebaseAuth
 class BaseAccountViewController: BaseViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
-    var currentUser:UserFirebase?
+    var currentUser:UserFirebase? {
+        didSet {
+            userDataUpdate()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,6 +16,7 @@ class BaseAccountViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.createSpinnerView()
         handle = Auth.auth().addStateDidChangeListener({[weak self]  _, user in
             guard let self = self else {return}
             guard let user = user else {
@@ -19,8 +24,11 @@ class BaseAccountViewController: BaseViewController {
                 alert.addAction(UIAlertAction(title: "Reconnect", style: .default, handler: {_ in
                     self.navigationController?.setViewControllers([LoginViewController()], animated: true)
                 }))
+                self.hideSpinnerView()
+                self.present(alert,animated: true)
                 return
             }
+            self.hideSpinnerView()
             self.currentUser = UserFirebase(authData: user)
         })
     }
@@ -30,4 +38,8 @@ class BaseAccountViewController: BaseViewController {
         guard let handle = handle else { return }
         Auth.auth().removeStateDidChangeListener(handle)
     }
+}
+
+@objc extension BaseAccountViewController {
+    public func userDataUpdate() {}
 }

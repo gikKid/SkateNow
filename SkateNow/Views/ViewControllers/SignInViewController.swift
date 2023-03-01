@@ -31,10 +31,12 @@ class SignInViewController: SignBaseViewController {
                 self.valid()
                 break
             case .successSignInNewUser:
-                self.successSignInNewUser()
+                self.navigationController?.setViewControllers([TransportViewController()], animated: true)
                 break
-            case .successSignIn:
+            case .userTransportExist:
                 self.navigationController?.setViewControllers([MenuViewController()], animated: true)
+            case .userTransportNotExist:
+                self.navigationController?.setViewControllers([TransportViewController()], animated: true)
                 break
             default:
                 break
@@ -94,10 +96,5 @@ extension SignInViewController:UITextFieldDelegate {
 extension SignInViewController {
     @objc private func confirmButtonTapped(_ sender:UIButton) {
         self.viewModel.sendSignInRequest()
-    }
-    
-    private func successSignInNewUser() {
-        self.hideSpinnerView()
-        self.navigationController?.setViewControllers([TransportViewController()], animated: true)
     }
 }

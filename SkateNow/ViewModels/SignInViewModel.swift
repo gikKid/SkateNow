@@ -8,7 +8,8 @@ enum SignInState {
     case unvalid
     case fetching
     case successSignInNewUser
-    case successSignIn
+    case userTransportExist
+    case userTransportNotExist
 }
 
 final class SignInViewModel:NSObject {
@@ -20,6 +21,7 @@ final class SignInViewModel:NSObject {
     }
     var handleState: ((SignInState) -> Void)?
     var errorSignInHandler: ((String) -> Void)?
+    let defaults = UserDefaults.standard
     
     
     public func emailPassed(_ email:String?) {
@@ -52,7 +54,7 @@ final class SignInViewModel:NSObject {
             if let error = error {
                 self.errorSignInHandler?(error.localizedDescription)
                 return
-            }
+        }
             
             let db = Firestore.firestore()
             
@@ -64,25 +66,39 @@ final class SignInViewModel:NSObject {
             ]
             
             let usersDocumentsRef = db.collection(PrivateResources.usersCollection)
+            
             usersDocumentsRef.document(self.user.email.lowercased()).getDocument(completion: { (document, error) in
-                if let document = document, !document.exists {
-                    usersDocumentsRef.document(self.user.email.lowercased()).setData(docData) { err in
-                        if let err = err {
-                            self.errorSignInHandler?("Error create user: \(err.localizedDescription)")
-                            return
-                        }
-                        self.saveUserData()
-                        self.state = .successSignInNewUser
-                    }
-                } else {
-                    
+                if let error = error {
+                    self.errorSignInHandler?("Error: \(error.localizedDescription)")
+                    return
                 }
+                self.checkExistingUser(document,docData, usersDocumentsRef)
             })
         })
     }
     
+    private func checkExistingUser(_ document: DocumentSnapshot?,_ documentData:[String:Any],_ usersDocumentsRef: CollectionReference) {
+        guard let document = document else {return}
+        if !document.exists {
+            usersDocumentsRef.document(self.user.email.lowercased()).setData(documentData) { err in
+                if let err = err {
+                    self.errorSignInHandler?("Error create user: \(err.localizedDescription)")
+                    return
+                }
+                self.state = .successSignInNewUser
+            }
+        } else {
+            if let _ = document.get(PrivateResources.usersTransportKey) as? String {
+                self.defaults.set(true, forKey: Resources.Keys.isChoosenTransport)
+                self.state = .userTransportExist
+            } else {
+                self.state = .userTransportNotExist
+            }
+        }
+        self.saveUserData()
+    }
+    
     private func saveUserData() {
-        let defaults = UserDefaults.standard
         defaults.set(true, forKey: Resources.Keys.isSignIn)
         do {
             try KeychainManager.save(service: Resources.Keys.service, email: user.email, password: user.password.data(using: .utf8) ?? Data())

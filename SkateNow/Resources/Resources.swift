@@ -10,6 +10,7 @@ enum Resources {
         static let uid = "uidKey"
         static let service = "Firebase"
         static let isChoosenTransport = "transportKey"
+        static let isDarkTheme = "darkTheme"
     }
     
     enum Titles {
@@ -54,6 +55,7 @@ enum Resources {
         static let scooter = "scooter"
         static let bmx = "bmx"
         static let downTriangle = "arrowtriangle.down.fill"
+        static let profileDefault = "profileDefault"
     }
     
     enum Identefiers {
