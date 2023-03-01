@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 enum ProfileState {
     case fetching
@@ -17,6 +18,7 @@ final class ProfileViewModel:NSObject {
     }
     var errorHandle: ((String) -> Void)?
     var stateChanged: ((ProfileState) -> Void)?
+    let db = Firestore.firestore()
     
     public func switchTheme(_ isOn:Bool) {
         if isOn {
@@ -52,5 +54,34 @@ final class ProfileViewModel:NSObject {
     private func dropDefaultsData() {
         defaults.set(false, forKey: Resources.Keys.isChoosenTransport)
         defaults.set(false, forKey: Resources.Keys.isSignIn)
+    }
+    
+    public func createPickerAlert(_ picker:UIImagePickerController,_ profileVC:ProfileViewController) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Take photo", style: .default, handler: { _ in
+            picker.sourceType = .camera
+            profileVC.present(picker, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Choose from photo gallery", style: .default, handler: { _ in
+            profileVC.present(picker, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: Resources.Titles.cancel, style: .cancel))
+        profileVC.present(alert, animated: true)
+    }
+    
+    public func updateNameTextField(_ user:UserFirebase?, _ nameTextField:UITextField) {
+        guard let user = user else {return}
+        db.collection(PrivateResources.usersCollection).document(user.email.lowercased()).getDocument(completion: { [weak self] (document, error) in
+            guard let self = self else {return}
+            if let error = error {
+                self.errorHandle?("Fail to get your data \(error)")
+                return
+            }
+            guard let document = document else {return}
+            if let name = document.get(PrivateResources.usersNameKey) as? String {
+                nameTextField.text = name
+            }
+        })
+        
     }
 }

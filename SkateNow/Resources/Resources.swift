@@ -35,6 +35,7 @@ enum Resources {
         static let bmx = "BMX"
         static let getStarted = "Get started"
         static let spots = "Spots"
+        static let cancel = "Cancel"
     }
     
     enum Placeholders {

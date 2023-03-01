@@ -139,7 +139,7 @@ extension TransportViewController {
             scooterDownTriangleImageView.bottomAnchor.constraint(equalTo: skateBoardDownTriangleImageView.bottomAnchor),
             bmxDownTriangleImageView.centerXAnchor.constraint(equalTo: bmxStackView.centerXAnchor),
             bmxDownTriangleImageView.bottomAnchor.constraint(equalTo: skateBoardDownTriangleImageView.bottomAnchor),
-            topTextLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            topTextLabel.bottomAnchor.constraint(equalTo: self.scooterDownTriangleImageView.topAnchor, constant: -15),
             topTextLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         ])
     }

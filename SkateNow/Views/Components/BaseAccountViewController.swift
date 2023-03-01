@@ -16,7 +16,6 @@ class BaseAccountViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.createSpinnerView()
         handle = Auth.auth().addStateDidChangeListener({[weak self]  _, user in
             guard let self = self else {return}
             guard let user = user else {
@@ -28,7 +27,6 @@ class BaseAccountViewController: BaseViewController {
                 self.present(alert,animated: true)
                 return
             }
-            self.hideSpinnerView()
             self.currentUser = UserFirebase(authData: user)
         })
     }

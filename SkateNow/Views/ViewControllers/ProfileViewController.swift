@@ -13,6 +13,8 @@ class ProfileViewController: BaseAccountViewController {
     var confirmChangesButton = UIBarButtonItem()
     let contentVertStackView = UIStackView()
     let scrollView = UIScrollView()
+    let backgroundPhotoPicker = UIImagePickerController()
+    let avatarPhotoPicker = UIImagePickerController()
     lazy var viewModel = {
        ProfileViewModel()
     }()
@@ -66,7 +68,11 @@ extension ProfileViewController {
         navigationItem.rightBarButtonItems = [confirmChangesButton]
         
         backgroundImageView.backgroundColor = .systemGray5
-        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.contentMode = .scaleToFill
+        backgroundImageView.isUserInteractionEnabled = true
+        
+        let backgroundImageViewGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(backgroundImageViewTapped(_:)))
+        backgroundImageView.addGestureRecognizer(backgroundImageViewGestureRecogn)
 
         userAvatarImageView.image = UIImage(named: Resources.Images.profileDefault)
         userAvatarImageView.layer.masksToBounds = false
@@ -76,7 +82,12 @@ extension ProfileViewController {
         userAvatarImageView.clipsToBounds = true
         userAvatarImageView.contentMode = .scaleAspectFill
         userAvatarImageView.backgroundColor = .white
-                
+        userAvatarImageView.isUserInteractionEnabled = true
+        
+        let userAvatarImageViewGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(backgroundImageViewTapped(_:)))
+        
+        userAvatarImageView.addGestureRecognizer(userAvatarImageViewGestureRecogn)
+        
         contentVertStackView.alignment = .fill
         contentVertStackView.spacing = 30
         contentVertStackView.axis = .vertical
@@ -85,7 +96,6 @@ extension ProfileViewController {
         nameLabel.font = .systemFont(ofSize: UIConstants.labelFont)
        
         self.configureTextField(nameTextField, "Write name")
-        //FIXME: - SET USER NAME IN TEXT BY NAME TEXT FIELD
         
         let nameHorizontStackView = UIStackView()
         nameHorizontStackView.alignment = .leading
@@ -114,6 +124,9 @@ extension ProfileViewController {
         contentVertStackView.addArrangedSubview(nameHorizontStackView)
         contentVertStackView.addArrangedSubview(themeHorizontStackView)
         contentVertStackView.addArrangedSubview(logOutButton)
+        
+        self.configurePhotoPicker(backgroundPhotoPicker)
+        self.configurePhotoPicker(avatarPhotoPicker)
     }
     
     override func layoutViews() {
@@ -127,7 +140,7 @@ extension ProfileViewController {
             backgroundImageView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
             backgroundImageView.rightAnchor.constraint(equalTo: self.scrollView.rightAnchor),
             backgroundImageView.leftAnchor.constraint(equalTo: self.scrollView.leftAnchor),
-            backgroundImageView.heightAnchor.constraint(equalToConstant: self.view.frame.height / 6),
+            backgroundImageView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 5.5),
             userAvatarImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             userAvatarImageView.topAnchor.constraint(equalTo: backgroundImageView.bottomAnchor, constant: -20),
             userAvatarImageView.widthAnchor.constraint(equalToConstant: UIConstants.profileWidth),
@@ -177,7 +190,51 @@ extension ProfileViewController {
         self.createSpinnerView()
     }
     
+    private func configurePhotoPicker(_ picker:UIImagePickerController) {
+        picker.allowsEditing = true
+        picker.delegate = self
+    }
+    
     override func userDataUpdate() {
+        self.viewModel.updateNameTextField(super.currentUser, nameTextField)
+    }
+    
+    @objc private func backgroundImageViewTapped(_ sender: UITapGestureRecognizer) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Change background", style: .default, handler: { [weak self] _ in
+            guard let self = self else {return}
+            self.viewModel.createPickerAlert(self.backgroundPhotoPicker, self)
+        }))
+        alert.addAction(UIAlertAction(title: "Change avatar", style: .default, handler: { [weak self] _ in
+            guard let self = self else {return}
+            self.viewModel.createPickerAlert(self.avatarPhotoPicker, self)
+        }))
+        alert.addAction(UIAlertAction(title: Resources.Titles.cancel, style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+}
+
+
+//MARK: - UIImagePickerDelegate
+extension ProfileViewController:UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {return}
+        
+        switch picker {
+        case backgroundPhotoPicker:
+            self.backgroundImageView.image = image
+        default:
+            self.userAvatarImageView.image = image
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+
+//MARK: - UITextFieldDelegate
+extension ProfileViewController:UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         
     }
 }
