@@ -234,7 +234,7 @@ extension ProfileViewController {
     }
     
     override func userDataUpdate() {
-        self.viewModel.updateFields(super.currentUser, nameTextField, transportButton)
+        self.viewModel.updateFields(super.currentUser, nameTextField, transportButton,backgroundImageView,userAvatarImageView)
     }
     
     @objc private func backgroundImageViewTapped(_ sender: UITapGestureRecognizer) {
@@ -267,8 +267,10 @@ extension ProfileViewController:UINavigationControllerDelegate, UIImagePickerCon
         switch picker {
         case backgroundPhotoPicker:
             self.backgroundImageView.image = image
+            self.viewModel.changeBackgroundImage(image)
         default:
             self.userAvatarImageView.image = image
+            self.viewModel.changeAvatarImage(image)
         }
         picker.dismiss(animated: true, completion: nil)
     }

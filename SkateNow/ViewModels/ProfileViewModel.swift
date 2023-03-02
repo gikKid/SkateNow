@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
+
 
 enum ProfileState {
     case fetching
@@ -22,8 +24,11 @@ final class ProfileViewModel:NSObject {
     var errorServerHandler: ((String) -> Void)?
     var stateChanged: ((ProfileState) -> Void)?
     private let db = Firestore.firestore()
+    private let storageRef = Storage.storage().reference()
     private var newnName:String?
     private var newTransport:String?
+    private var newAvatarImage:UIImage?
+    private var newBackgroundImage:UIImage?
     
     public func switchTheme(_ isOn:Bool) {
         if isOn {
@@ -74,7 +79,7 @@ final class ProfileViewModel:NSObject {
         profileVC.present(alert, animated: true)
     }
     
-    public func updateFields(_ user:UserFirebase?, _ nameTextField:UITextField,_ transportButton:UIButton) {
+    public func updateFields(_ user:UserFirebase?, _ nameTextField:UITextField,_ transportButton:UIButton, _ backgroundImageView:UIImageView,_ avatarImageView:UIImageView) {
         guard let user = user else {return}
         db.collection(PrivateResources.usersCollection).document(user.email.lowercased()).getDocument(completion: { [weak self] (document, error) in
             guard let self = self else {return}
@@ -91,10 +96,30 @@ final class ProfileViewModel:NSObject {
                 transportButton.setTitle(transport, for: .normal)
             }
             
-            //FIXME: - get images
+            if let backgroundImagePath = document.get(PrivateResources.usersBackgorundImageURLKey) as? String {
+                self.getImageData(path: backgroundImagePath, imageView: backgroundImageView)
+            }
+            
+            if let avatarImagePath = document.get(PrivateResources.usersAvatarImageURLKey) as? String {
+                self.getImageData(path: avatarImagePath, imageView: avatarImageView)
+            }
+            
         })
     }
     
+    private func getImageData(path:String, imageView:UIImageView) {
+        let islandPath = storageRef.child(path)
+        islandPath.getData(maxSize: 1 * 1024 * 1024, completion: { [weak self] data, error in
+            guard let self = self else {return}
+            if let error = error {
+                self.errorServerHandler?("Fail to load image: \(error)")
+                return
+            }
+            
+            let image = UIImage(data: data!)
+            imageView.image = image
+        })
+    }
     
     public func changeName(_ newName:String?) {
         self.newnName = newName
@@ -103,6 +128,17 @@ final class ProfileViewModel:NSObject {
     
     public func changeTransport(_ newTransport:String) {
         self.newTransport = newTransport
+        self.state = .confirmChange
+    }
+    
+    public func changeAvatarImage(_ newAvatarImage:UIImage) {
+        self.newAvatarImage = newAvatarImage
+        self.state = .confirmChange
+    }
+    
+    public func changeBackgroundImage(_ newBackgroundImage:UIImage) {
+        self.newBackgroundImage = newBackgroundImage
+        self.state = .confirmChange
     }
     
     public func sendChange(_ user:UserFirebase?) {
@@ -128,6 +164,15 @@ final class ProfileViewModel:NSObject {
                 }
             }
         }
+        
+        if let newBackgroundImage = newBackgroundImage {
+            self.uploadImage(image: newBackgroundImage, user: user, folderName: PrivateResources.backgroundStorageFolder, userFieldKey: PrivateResources.usersBackgorundImageURLKey)
+        }
+        
+        if let newAvatarImage = newAvatarImage {
+            self.uploadImage(image: newAvatarImage, user: user, folderName: PrivateResources.avatarsStorageFolder, userFieldKey: PrivateResources.usersAvatarImageURLKey)
+        }
+        
         self.state = .successConfirmChange
     }
     
@@ -155,5 +200,29 @@ final class ProfileViewModel:NSObject {
             transportButton.setImage(UIImage(systemName: Resources.Images.notEdit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
             profileVC.present(transportPopOverVC,animated: true)
         }
+    }
+    
+    private func uploadImage(image: UIImage,user:UserFirebase?,folderName:String, userFieldKey:String) {
+        guard let imageData = image.jpegData(compressionQuality: 0.8) else {return}
+        guard let user = user else {return}
+        let path = "\(folderName)/\(user.email).jpg"
+        let fileRef = storageRef.child(path)
+        
+        let _ = fileRef.putData(imageData, metadata: nil, completion: { [weak self] (metadata, error) in
+            guard let self = self else {return}
+            if let error = error {
+                self.errorServerHandler?("Fail to upload image: \(error)")
+                return
+            }
+            
+            self.db.collection(PrivateResources.usersCollection).document(user.email).updateData([
+                userFieldKey: path
+            ]) { err in
+                if let err = err {
+                    self.errorServerHandler?("Error update: \(err)")
+                    return
+                }
+            }
+        })
     }
 }

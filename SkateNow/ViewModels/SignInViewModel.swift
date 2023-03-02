@@ -62,7 +62,9 @@ final class SignInViewModel:NSObject {
                 PrivateResources.usersNameKey: self.user.email.prefix(5),
                 PrivateResources.usersVisitedSpotsKey: [""],
                 PrivateResources.usersTransportKey: "",
-                PrivateResources.usersDoneTricksKey: [""]
+                PrivateResources.usersDoneTricksKey: [""],
+                PrivateResources.usersAvatarImageURLKey: "",
+                PrivateResources.usersBackgorundImageURLKey: ""
             ]
             
             let usersDocumentsRef = db.collection(PrivateResources.usersCollection)
