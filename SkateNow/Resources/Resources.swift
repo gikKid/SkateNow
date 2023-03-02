@@ -57,10 +57,13 @@ enum Resources {
         static let bmx = "bmx"
         static let downTriangle = "arrowtriangle.down.fill"
         static let profileDefault = "profileDefault"
+        static let edit = "pencil"
+        static let notEdit = "pencil.slash"
     }
     
     enum Identefiers {
         static let menuCollecionViewCell = "menuCell"
         static let spotMap = "spot"
+        static let popOverCell = "popOverCell"
     }
 }

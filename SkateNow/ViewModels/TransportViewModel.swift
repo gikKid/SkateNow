@@ -9,11 +9,11 @@ enum Transport {
     var title:String {
         switch self {
         case .skate:
-            return "skate"
+            return Resources.Titles.skateboard
         case .scooter:
-            return "scooter"
+            return Resources.Titles.scooter
         case .bmx:
-            return "bmx"
+            return Resources.Titles.bmx
         }
     }
 }
@@ -74,7 +74,7 @@ final class TransportViewModel:NSObject {
         
         self.state = .fetching
         self.db.collection(PrivateResources.usersCollection).document(userEmail).updateData([
-            PrivateResources.usersTransportKey: transport.title
+            PrivateResources.usersTransportKey: transport.title.lowercased()
         ]) { err in
             if let err = err {
                 self.errorHandler?("Error update: \(err)")

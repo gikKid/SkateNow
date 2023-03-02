@@ -4,10 +4,8 @@ class ProfileViewController: BaseAccountViewController {
     
     let backgroundImageView = UIImageView()
     let userAvatarImageView = UIImageView()
-    let nameLabel = UILabel()
     let nameTextField = UITextField()
-    // transport choosing
-    let darkThemeLabel = UILabel()
+    let transportButton = UIButton()
     let darkThemeSwitcher = UISwitch()
     let logOutButton = UIButton()
     var confirmChangesButton = UIBarButtonItem()
@@ -29,12 +27,20 @@ class ProfileViewController: BaseAccountViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel.checkDarkTheme(self.darkThemeSwitcher)
-        self.viewModel.errorHandle = { [weak self] errorMessage in
+        
+        self.viewModel.errorHandlerLogOut = { [weak self] errorMessage in
             guard let self = self else {return}
             self.hideSpinnerView()
             self.logOutButton.isEnabled = true
             self.present(self.createInfoAlert(message: errorMessage, title: Resources.Titles.errorTitle),animated: true)
         }
+        
+        self.viewModel.errorServerHandler = { [weak self] errorMessage in
+            guard let self = self else {return}
+            self.disableConfirmChangesButton()
+            self.present(self.createInfoAlert(message: errorMessage, title: Resources.Titles.errorTitle),animated: true)
+        }
+        
         self.viewModel.stateChanged = {[weak self] state in
             guard let self = self else {return}
             switch state {
@@ -43,6 +49,10 @@ class ProfileViewController: BaseAccountViewController {
                 break
             case .fetching:
                 self.fetching()
+            case .confirmChange:
+                self.enableConfirmChangesButton()
+            case .successConfirmChange:
+                self.disableConfirmChangesButton()
             }
         }
     }
@@ -62,6 +72,9 @@ extension ProfileViewController {
     override func configure() {
         super.configure()
         title = Resources.Titles.profile
+        
+        let VCViewGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(userTapPresentedVC(_:)))
+        self.view.addGestureRecognizer(VCViewGestureRecogn)
         
         self.confirmChangesButton = UIBarButtonItem(title: Resources.Titles.confirm, style: .done, target: self, action: #selector(confirmChangesButtonTapped(_:)))
         self.disableConfirmChangesButton()
@@ -92,27 +105,41 @@ extension ProfileViewController {
         contentVertStackView.spacing = 30
         contentVertStackView.axis = .vertical
         
+        let nameLabel = UILabel()
         nameLabel.text = "Name:"
         nameLabel.font = .systemFont(ofSize: UIConstants.labelFont)
        
         self.configureTextField(nameTextField, "Write name")
+        nameTextField.delegate = self
         
         let nameHorizontStackView = UIStackView()
-        nameHorizontStackView.alignment = .leading
-        nameHorizontStackView.axis = .horizontal
-        nameHorizontStackView.distribution = .equalSpacing
+        self.configureHorizontStackView(nameHorizontStackView)
         nameHorizontStackView.addArrangedSubview(nameLabel)
         nameHorizontStackView.addArrangedSubview(nameTextField)
         
+        transportButton.setImage(UIImage(systemName: Resources.Images.edit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        transportButton.tintColor = .systemGray3
+        transportButton.setTitleColor(.lightGray, for: .normal)
+        transportButton.semanticContentAttribute = .forceRightToLeft
+        transportButton.addTarget(self, action: #selector(userTapTransportButton(_:)), for: .touchUpInside)
+        
+        let transportLabel = UILabel()
+        transportLabel.text = "My choice:"
+        transportLabel.font = .systemFont(ofSize: UIConstants.labelFont)
+        
+        let transportHorizontStackView = UIStackView()
+        self.configureHorizontStackView(transportHorizontStackView)
+        transportHorizontStackView.addArrangedSubview(transportLabel)
+        transportHorizontStackView.addArrangedSubview(transportButton)
+        
+        let darkThemeLabel = UILabel()
         darkThemeLabel.text = "Dark theme"
         darkThemeLabel.font = .systemFont(ofSize: UIConstants.labelFont)
         
         darkThemeSwitcher.addTarget(self, action: #selector(themeSwitcherTapped), for: .valueChanged)
         
         let themeHorizontStackView = UIStackView()
-        themeHorizontStackView.alignment = .leading
-        themeHorizontStackView.axis = .horizontal
-        themeHorizontStackView.distribution = .equalSpacing
+        self.configureHorizontStackView(themeHorizontStackView)
         themeHorizontStackView.addArrangedSubview(darkThemeLabel)
         themeHorizontStackView.addArrangedSubview(darkThemeSwitcher)
         
@@ -122,6 +149,7 @@ extension ProfileViewController {
         logOutButton.addTarget(self, action: #selector(userTapLogOutButton(_:)), for: .touchUpInside)
         
         contentVertStackView.addArrangedSubview(nameHorizontStackView)
+        contentVertStackView.addArrangedSubview(transportHorizontStackView)
         contentVertStackView.addArrangedSubview(themeHorizontStackView)
         contentVertStackView.addArrangedSubview(logOutButton)
         
@@ -159,11 +187,15 @@ extension ProfileViewController {
 //MARK: - Buttons methods
 extension ProfileViewController {
     @objc private func confirmChangesButtonTapped(_ sender:UIButton) {
-        
+        self.viewModel.sendChange(self.currentUser)
     }
     
     @objc private func userTapLogOutButton(_ sender: UIButton) {
         self.viewModel.signOut()
+    }
+    
+    @objc private func userTapTransportButton(_ sender:UIButton) {
+        self.viewModel.showTransportPopOver(transportButton, self, presentedViewController)
     }
 }
 
@@ -195,8 +227,14 @@ extension ProfileViewController {
         picker.delegate = self
     }
     
+    private func configureHorizontStackView(_ horizontStackView:UIStackView) {
+        horizontStackView.alignment = .leading
+        horizontStackView.axis = .horizontal
+        horizontStackView.distribution = .equalSpacing
+    }
+    
     override func userDataUpdate() {
-        self.viewModel.updateNameTextField(super.currentUser, nameTextField)
+        self.viewModel.updateFields(super.currentUser, nameTextField, transportButton)
     }
     
     @objc private func backgroundImageViewTapped(_ sender: UITapGestureRecognizer) {
@@ -212,6 +250,11 @@ extension ProfileViewController {
         alert.addAction(UIAlertAction(title: Resources.Titles.cancel, style: .cancel, handler: nil))
         
         self.present(alert, animated: true)
+    }
+    
+    @objc private func userTapPresentedVC(_ sender:UITapGestureRecognizer) {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+        self.transportButton.setImage(UIImage(systemName: Resources.Images.edit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
     }
 }
 
@@ -235,6 +278,35 @@ extension ProfileViewController:UINavigationControllerDelegate, UIImagePickerCon
 //MARK: - UITextFieldDelegate
 extension ProfileViewController:UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        
+        switch textField {
+        case nameTextField:
+            self.viewModel.changeName(textField.text)
+        default:
+            break
+        }
+    }
+}
+
+
+
+//MARK: - TransportPopOverVCDelegate
+extension ProfileViewController:TransportsPopOverViewControllerProtocol {
+    func passSelectedTransport(_ newTransport: String) {
+        self.transportButton.setTitle(newTransport, for: .normal)
+        self.transportButton.setImage(UIImage(systemName: Resources.Images.edit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        self.viewModel.changeTransport(newTransport)
+        self.enableConfirmChangesButton()
+    }
+}
+
+
+//MARK: - PopOverPresentation
+extension ProfileViewController:UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
+    }
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        false
     }
 }
