@@ -71,38 +71,27 @@ extension SignBaseViewController {
     
     public func unvalidPassword() {
         self.setErrorLabel(text: Resources.Titles.unvalidPassword)
-        self.deactivateConfirmButton()
+        self.disableButton(confirmButton, .background)
     }
     
     public func unvalidEmail() {
         self.setErrorLabel(text: Resources.Titles.unvalidEmail)
-        self.deactivateConfirmButton()
+        self.disableButton(confirmButton, .background)
     }
     
     public func fetching() {
-        self.confirmButton.isEnabled = false
+        self.disableButton(confirmButton, .background)
         self.createSpinnerView()
     }
     
     public func valid() {
         self.errorLabel.isHidden = true
-        self.confirmButton.isEnabled = true
-        self.activateConfirmButton()
+        self.enableButton(confirmButton, UIColor(named: Resources.Colors.mainColor) ?? .systemOrange, .background)
     }
     
     public func setErrorLabel(text:String) {
         self.errorLabel.text = text
         self.errorLabel.isHidden = false
-    }
-    
-    public func activateConfirmButton() {
-        self.confirmButton.backgroundColor = UIColor(named: Resources.Colors.mainColor)
-        self.confirmButton.isEnabled = true
-    }
-    
-    public func deactivateConfirmButton() {
-        self.confirmButton.backgroundColor = .gray
-        self.confirmButton.isEnabled = false
     }
     
     public func successFetching(messageText:String) {

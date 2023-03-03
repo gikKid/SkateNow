@@ -29,6 +29,7 @@
 		545227F129B2356F003E659C /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545227F029B2356F003E659C /* BottomSheetViewController.swift */; };
 		545227F329B25B6A003E659C /* NewSpotFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545227F229B25B6A003E659C /* NewSpotFormViewController.swift */; };
 		545227F529B25C8C003E659C /* NewSpotFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545227F429B25C8C003E659C /* NewSpotFormViewModel.swift */; };
+		545227F729B29C6D003E659C /* SpotForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545227F629B29C6D003E659C /* SpotForm.swift */; };
 		54534BE429AC22C100544CD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54534BE329AC22C100544CD2 /* GoogleService-Info.plist */; };
 		54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE529AC9C7600544CD2 /* SignInViewController.swift */; };
 		54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE729AC9C9800544CD2 /* SignUpViewController.swift */; };
@@ -71,6 +72,7 @@
 		545227F029B2356F003E659C /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		545227F229B25B6A003E659C /* NewSpotFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpotFormViewController.swift; sourceTree = "<group>"; };
 		545227F429B25C8C003E659C /* NewSpotFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpotFormViewModel.swift; sourceTree = "<group>"; };
+		545227F629B29C6D003E659C /* SpotForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotForm.swift; sourceTree = "<group>"; };
 		54534BE329AC22C100544CD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54534BE529AC9C7600544CD2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		54534BE729AC9C9800544CD2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				540B6CB329ACC6A2000EC244 /* User.swift */,
 				54028C9E29AD108F0047E9A9 /* MenuCellOption.swift */,
 				54E2911929AF8C88004AB99A /* Spot.swift */,
+				545227F629B29C6D003E659C /* SpotForm.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				54E2911F29AFB752004AB99A /* ProfileViewModel.swift in Sources */,
 				540B6CB229ACA3B8000EC244 /* LoginViewModel.swift in Sources */,
 				5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */,
+				545227F729B29C6D003E659C /* SpotForm.swift in Sources */,
 				540B6CB029AC9F89000EC244 /* Extension+UIView.swift in Sources */,
 				545227F329B25B6A003E659C /* NewSpotFormViewController.swift in Sources */,
 				5430E0E329AD46D0006E815F /* MenuCollectionViewCell.swift in Sources */,

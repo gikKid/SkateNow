@@ -1,5 +1,11 @@
 import UIKit
 
+enum ColorButtonType {
+    case background
+    case tint
+    case title
+}
+
 class BaseViewController: UIViewController {
     
     let childSpinner = SpinnerViewController()
@@ -89,4 +95,29 @@ extension BaseViewController {
         childSpinner.removeFromParent()
     }
     
+    public func disableButton(_ button:UIButton,_ colorType:ColorButtonType) {
+        button.isEnabled = false
+        
+        switch colorType {
+        case .background:
+            button.backgroundColor = .lightGray
+        case .title:
+            button.setTitleColor(.gray, for: .normal)
+        case .tint:
+            button.tintColor = .gray
+        }
+    }
+    
+    public func enableButton(_ button:UIButton,_ color:UIColor,_ colorType:ColorButtonType) {
+        button.isEnabled = true
+        
+        switch colorType {
+        case .background:
+            button.backgroundColor = color
+        case .title:
+            button.setTitleColor(color, for: .normal)
+        case .tint:
+            button.tintColor = color
+        }
+    }
 }

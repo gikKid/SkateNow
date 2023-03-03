@@ -12,7 +12,7 @@ class SignInViewController: SignBaseViewController {
             guard let self = self else {return}
             self.hideSpinnerView()
             self.present(self.createInfoAlert(message: errorText, title: Resources.Titles.errorTitle),animated: true)
-            self.activateConfirmButton()
+            self.enableButton(self.confirmButton, UIColor(named: Resources.Colors.mainColor) ?? .systemOrange, .background)
         }
         
         self.viewModel.handleState = {[weak self] state in

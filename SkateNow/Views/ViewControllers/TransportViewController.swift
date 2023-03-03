@@ -24,15 +24,12 @@ class TransportViewController: BaseAccountViewController {
             guard let self = self else {return}
             switch state {
             case .choosen:
-                self.activateConfirmButton()
-                break
+                self.enableButton(self.confirmButton, UIColor(named: Resources.Colors.mainColor) ?? .systemOrange, .background)
             case .notChoosen:
                 self.present(self.createInfoAlert(message: "Nothing was chosen", title: Resources.Titles.errorTitle),animated: true)
-                break
             case .beforeChoosen:
                 self.viewModel.saveUserDef()
                 self.navigationController?.setViewControllers([MenuViewController()], animated: true)
-                break
             case .fetching:
                 self.fetching()
             case .success:
@@ -162,11 +159,6 @@ extension TransportViewController {
         downTriangle.image = UIImage(systemName: Resources.Images.downTriangle, withConfiguration: UIImage.SymbolConfiguration(scale: .large))
         downTriangle.tintColor = UIColor(named: Resources.Colors.mainColor)
         downTriangle.isHidden = true
-    }
-    
-    private func activateConfirmButton() {
-        self.confirmButton.isEnabled = true
-        self.confirmButton.backgroundColor = UIColor(named: Resources.Colors.mainColor)
     }
     
     private func fetching() {

@@ -31,7 +31,7 @@ class ProfileViewController: BaseAccountViewController {
         self.viewModel.errorHandlerLogOut = { [weak self] errorMessage in
             guard let self = self else {return}
             self.hideSpinnerView()
-            self.logOutButton.isEnabled = true
+            self.enableButton(self.logOutButton, .red, .title)
             self.present(self.createInfoAlert(message: errorMessage, title: Resources.Titles.errorTitle),animated: true)
         }
         
@@ -196,6 +196,7 @@ extension ProfileViewController {
     
     @objc private func userTapTransportButton(_ sender:UIButton) {
         self.viewModel.showTransportPopOver(transportButton, self, presentedViewController)
+        self.disableButton(logOutButton, .title)
     }
 }
 
@@ -218,8 +219,8 @@ extension ProfileViewController {
     }
     
     private func fetching() {
-        self.logOutButton.isEnabled = false
         self.createSpinnerView()
+        self.disableButton(logOutButton, .title)
     }
     
     private func configurePhotoPicker(_ picker:UIImagePickerController) {
@@ -255,6 +256,7 @@ extension ProfileViewController {
     @objc private func userTapPresentedVC(_ sender:UITapGestureRecognizer) {
         presentedViewController?.dismiss(animated: true, completion: nil)
         self.transportButton.setImage(UIImage(systemName: Resources.Images.edit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        self.enableButton(logOutButton, .red, .title)
     }
 }
 
@@ -298,6 +300,7 @@ extension ProfileViewController:TransportsPopOverViewControllerProtocol {
         self.transportButton.setImage(UIImage(systemName: Resources.Images.edit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         self.viewModel.changeTransport(newTransport)
         self.enableConfirmChangesButton()
+        self.enableButton(logOutButton, .red, .title)
     }
 }
 

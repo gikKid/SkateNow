@@ -16,7 +16,7 @@ class NewSpotFormViewController: BottomSheetViewController {
     let addedImageView = UIImageView()
     var delegate:NewSpotFormViewControllerProtocol?
     lazy var viewModel = {
-       NewSpotViewModel()
+       NewSpotFormViewModel()
     }()
     
     private enum UIConstants {
@@ -52,7 +52,7 @@ extension NewSpotFormViewController {
         super.configure()
         
         confirmButton.setTitle(Resources.Titles.confirm, for: .normal)
-        self.disableConfirmButton()
+        self.disableButton(confirmButton, .title)
         
         cancelButton.setTitle(Resources.Titles.cancel, for: .normal)
         cancelButton.setTitleColor(UIColor(named: Resources.Colors.mainColor), for: .normal)
@@ -121,7 +121,6 @@ extension NewSpotFormViewController {
         super.animateDismissView()
         delegate?.handleDismiss()
     }
-    
 }
 
 
@@ -139,9 +138,9 @@ extension NewSpotFormViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case titleTextField:
-            break
+            self.viewModel.setDataTitle(textField)
         case shortInfoTextField:
-            break
+            self.viewModel.setDataShortInfo(textField)
         default:
             break
         }
@@ -161,20 +160,8 @@ extension NewSpotFormViewController:UITextViewDelegate {
         if textView.text.isEmpty {
             textView.text = Resources.Titles.fullInfo
             textView.textColor = .placeholderText
+        } else {
+            self.viewModel.setDataFullInfo(textView)
         }
-    }
-}
-
-
-//MARK: - Private methods
-extension NewSpotFormViewController {
-    private func disableConfirmButton() {
-        confirmButton.setTitleColor(.gray, for: .normal)
-        confirmButton.isEnabled = false
-    }
-    
-    private func enableConfirmButton() {
-        confirmButton.setTitleColor(UIColor(named: Resources.Colors.mainColor), for: .normal)
-        confirmButton.isEnabled = true
     }
 }
