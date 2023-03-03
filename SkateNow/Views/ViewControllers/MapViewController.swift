@@ -6,6 +6,7 @@ class MapViewController: BaseAccountViewController {
     
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
+    var addSpotButton = UIBarButtonItem()
     lazy var viewModel = {
        MapViewModel()
     }()
@@ -17,6 +18,17 @@ class MapViewController: BaseAccountViewController {
         self.viewModel.errorHandler = { [weak self] errorMessage in
             guard let self = self else {return}
             self.present(self.createInfoAlert(message: errorMessage, title: Resources.Titles.errorTitle),animated: true)
+        }
+        
+        self.viewModel.stateHandler = { state in
+            switch state {
+            case .cancelAddingSpot:
+                self.configureAddSpotButton()
+            case .addingSpot:
+                self.configureCancelButton()
+            default:
+                break
+            }
         }
     }
 }
@@ -33,7 +45,7 @@ extension MapViewController {
         super.configure()
         title = Resources.Titles.spots
         
-        let addSpotButton = UIBarButtonItem(title: "Add spot", style: .plain, target: self, action: #selector(userTapAddSpotButton(_:)))
+        addSpotButton = UIBarButtonItem(title: Resources.Titles.addSpot, style: .plain, target: self, action: #selector(userTapAddSpotButton(_:)))
         navigationItem.rightBarButtonItems = [addSpotButton]
         
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -65,7 +77,27 @@ extension MapViewController {
 //MARK: - Private methods
 extension MapViewController{
     @objc private func userTapAddSpotButton(_ sender: UIButton) {
-        
+        self.viewModel.userTapAddSpotButton()
+    }
+    
+    @objc private func addAnnotation(_ gesture:UITapGestureRecognizer) {
+        self.viewModel.createFormSpotView(gesture, self)
+    }
+    
+    private func configureAddSpotButton() {
+        addSpotButton.title = Resources.Titles.addSpot
+        title = Resources.Titles.spots
+    }
+    
+    private func configureCancelButton() {
+        addSpotButton.title = Resources.Titles.cancel
+        title = "Tap to place"
+        self.createMapTapGestRecogn()
+    }
+    
+    private func createMapTapGestRecogn() {
+        let mapViewTapGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(addAnnotation))
+        self.mapView.addGestureRecognizer(mapViewTapGestureRecogn)
     }
 }
 
@@ -101,9 +133,19 @@ extension MapViewController:CLLocationManagerDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        //
+        
 //        guard let spot = view.annotation as? Spot else {return}
 //        let launchOptions = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking]
 //        spot.mapItem?.openInMaps(launchOptions: launchOptions)
+    }
+}
+
+
+
+//MARK: - NewSportFormVCDelegate
+extension MapViewController:NewSpotFormViewControllerProtocol {
+    func handleDismiss() {
+        self.configureAddSpotButton()
+        self.viewModel.handleDismissSpotForm()
     }
 }

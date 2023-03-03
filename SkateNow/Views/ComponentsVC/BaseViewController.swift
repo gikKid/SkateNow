@@ -61,6 +61,21 @@ extension BaseViewController {
         textField.backgroundColor = .secondarySystemBackground
     }
     
+    public func configureBottomLineTextField(_ textField:UITextField,_ placeholder:String) {
+        let bottomLine = CALayer()
+        bottomLine.frame = CGRect(x: 0.0, y: textField.frame.height - 1, width: textField.frame.width, height: 1.0)
+        bottomLine.backgroundColor = UIColor.lightGray.cgColor
+        textField.borderStyle = .none
+        textField.layer.addSublayer(bottomLine)
+        textField.keyboardType = UIKeyboardType.default
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        
+        let centeredParagraphStyle = NSMutableParagraphStyle()
+        centeredParagraphStyle.alignment = .center
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder,attributes: [.paragraphStyle:centeredParagraphStyle])
+    }
+    
     public func createSpinnerView() {
         addChild(childSpinner)
         childSpinner.view.frame = view.frame

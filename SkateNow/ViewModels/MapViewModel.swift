@@ -2,11 +2,28 @@ import CoreLocation
 import MapKit
 import FirebaseFirestore
 
+enum MapState {
+    case addingSpot
+    case cancelAddingSpot
+    case fillSpotForm
+    case sendingSpot
+    case succesSendSpot
+    case errorSendSpot
+}
+
 final class MapViewModel:NSObject {
     
     let db = Firestore.firestore()
     var errorHandler: ((String) -> Void)?
+    var stateHandler: ((MapState) -> Void)?
     var spots = [Spot]()
+    public var state:MapState? {
+        didSet {
+            guard let state = state else {return}
+            stateHandler?(state)
+        }
+    }
+    
     
     public func didUpdateLocations(_ locations: [CLLocation],_ mapView:MKMapView) {
         if let location = locations.first {
@@ -55,7 +72,8 @@ final class MapViewModel:NSObject {
                     }
                     
                     let spot = Spot(title: title, shortInfo: shortInfo, fullInfo: fullInfo, prefferedTransport: prefferedTransport, coordinate: coordinate)
-                    mapView.addAnnotation(spot)                }
+                    mapView.addAnnotation(spot)
+                }
             }
         })
     }
@@ -75,6 +93,36 @@ final class MapViewModel:NSObject {
             view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
         return view
+    }
+    
+    public func handleDismissSpotForm() {
+        self.state = nil
+    }
+    
+    public func userTapAddSpotButton() {
+        switch self.state {
+        case .addingSpot:
+            state = .cancelAddingSpot
+        default:
+            state = .addingSpot
+        }
+    }
+    
+    public func createFormSpotView(_ gesture: UITapGestureRecognizer,_ mapVC:MapViewController) {
+        if let mapView = gesture.view as? MKMapView {
+            let point = gesture.location(in: mapView)
+            let coordinate = mapView.convert(point, toCoordinateFrom: mapView)
+            
+            //FIXME: - pin temporary annotation, store it locale if confirmed, remove it if cancel
+//            let annotation = MKPointAnnotation()
+//            annotation.coordinate = coordinate
+//            mapView.addAnnotation(annotation)
+            
+            let newSpotFormVC = NewSpotFormViewController()
+            newSpotFormVC.modalPresentationStyle = .overCurrentContext
+            newSpotFormVC.delegate = mapVC
+            mapVC.present(newSpotFormVC,animated: false)
+        }
     }
     
 }

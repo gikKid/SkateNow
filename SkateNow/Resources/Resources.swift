@@ -36,6 +36,9 @@ enum Resources {
         static let getStarted = "Get started"
         static let spots = "Spots"
         static let cancel = "Cancel"
+        static let addSpot = "Add spot"
+        static let generic = "Generic"
+        static let fullInfo = "Full info"
     }
     
     enum Placeholders {
