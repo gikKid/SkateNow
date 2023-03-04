@@ -41,7 +41,8 @@ enum Resources {
         static let fullInfo = "Full info"
         static let takePhoto = "Take photo"
         static let chooseFromPhotoGallery = "Choose from photo gallery"
-        static let ok = "OK"
+        static let close = "Close"
+        static let share = "Share"
     }
     
     enum Placeholders {
@@ -65,11 +66,18 @@ enum Resources {
         static let profileDefault = "profileDefault"
         static let edit = "pencil"
         static let notEdit = "pencil.slash"
+        static let share = "square.and.arrow.up"
+        static let multiply = "multiply"
     }
     
     enum Identefiers {
         static let menuCollecionViewCell = "menuCell"
         static let spotMap = "spot"
         static let popOverCell = "popOverCell"
+        static let imageSpotCollectionViewCell = "imageSpotCollectionCell"
+        static let titleSpotCollectionViewCell = "titleSpotCollectionCell"
+        static let preferredTypeSpotCollectionViewCell = "preferredTypeCollectionCell"
+        static let fullInfoSpotCollectionViewCell = "fullInfoCollectionCell"
+        static let buttonsSpotCollectionViewCell = "buttonsCollectionCell"
     }
 }

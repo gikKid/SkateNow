@@ -7,14 +7,15 @@ class Spot: NSObject, MKAnnotation {
     let fullInfo:String?
     let prefferedTransport:String?
     let coordinate: CLLocationCoordinate2D
+    let imageURL:String?
     
-    init(title:String?, shortInfo:String?, fullInfo:String?, prefferedTransport:String?, coordinate: CLLocationCoordinate2D) {
+    init(title:String?, shortInfo:String?, fullInfo:String?, prefferedTransport:String?, coordinate: CLLocationCoordinate2D, imageURL:String?) {
         self.title = title
         self.shortInfo = shortInfo
         self.fullInfo = fullInfo
         self.prefferedTransport = prefferedTransport
         self.coordinate = coordinate
-        
+        self.imageURL = imageURL
         super.init()
     }
     

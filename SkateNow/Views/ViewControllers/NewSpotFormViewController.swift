@@ -198,7 +198,7 @@ extension NewSpotFormViewController {
     
     private func successfulySendRequestCompletion() {
         let alert = UIAlertController(title: Resources.Titles.success, message: "New spot was successfuly sent!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Resources.Titles.ok, style: .default) {_ in
+        alert.addAction(UIAlertAction(title: Resources.Titles.confirmAlertActionTitle, style: .default) {_ in
             self.dismiss(animated: true)
         })
         self.present(alert,animated: true)

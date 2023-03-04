@@ -7,6 +7,7 @@ class MapViewController: BaseAccountViewController {
     let mapView = MKMapView()
     let locationManager = CLLocationManager()
     var addSpotButton = UIBarButtonItem()
+    var mapViewTapGestureRecogn = UITapGestureRecognizer()
     lazy var viewModel = {
        MapViewModel()
     }()
@@ -87,6 +88,7 @@ extension MapViewController{
     private func configureAddSpotButton() {
         addSpotButton.title = Resources.Titles.addSpot
         title = Resources.Titles.spots
+        self.mapView.removeGestureRecognizer(self.mapViewTapGestureRecogn)
     }
     
     private func configureCancelButton() {
@@ -96,7 +98,7 @@ extension MapViewController{
     }
     
     private func createMapTapGestRecogn() {
-        let mapViewTapGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(addAnnotation))
+        mapViewTapGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(addAnnotation))
         self.mapView.addGestureRecognizer(mapViewTapGestureRecogn)
     }
 }
@@ -133,10 +135,10 @@ extension MapViewController:CLLocationManagerDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-//        guard let spot = view.annotation as? Spot else {return}
-//        let launchOptions = [MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking]
-//        spot.mapItem?.openInMaps(launchOptions: launchOptions)
+        guard let spot = view.annotation as? Spot else {return}
+        let spotVC = SpotViewController(spot: spot)
+        spotVC.modalPresentationStyle = .overCurrentContext
+        self.present(spotVC,animated: false)
     }
 }
 
@@ -147,5 +149,6 @@ extension MapViewController:NewSpotFormViewControllerProtocol {
     func handleDismiss() {
         self.configureAddSpotButton()
         self.viewModel.handleDismissSpotForm()
+        self.mapView.removeGestureRecognizer(self.mapViewTapGestureRecogn)
     }
 }

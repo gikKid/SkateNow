@@ -30,6 +30,13 @@
 		545227F329B25B6A003E659C /* NewSpotFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545227F229B25B6A003E659C /* NewSpotFormViewController.swift */; };
 		545227F529B25C8C003E659C /* NewSpotFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545227F429B25C8C003E659C /* NewSpotFormViewModel.swift */; };
 		545227F729B29C6D003E659C /* SpotForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545227F629B29C6D003E659C /* SpotForm.swift */; };
+		545227F929B35C9A003E659C /* SpotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545227F829B35C9A003E659C /* SpotViewController.swift */; };
+		5452282929B3ADBD003E659C /* ImageSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5452282829B3ADBD003E659C /* ImageSpotCollectionViewCell.swift */; };
+		5452282B29B3AF40003E659C /* TitleSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5452282A29B3AF40003E659C /* TitleSpotCollectionViewCell.swift */; };
+		5452282D29B3B1DF003E659C /* FullInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5452282C29B3B1DF003E659C /* FullInfoCollectionViewCell.swift */; };
+		5452282F29B3B2D0003E659C /* ButtonsSpotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5452282E29B3B2D0003E659C /* ButtonsSpotCollectionViewCell.swift */; };
+		5452283129B3B8F1003E659C /* PreferredTypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5452283029B3B8F1003E659C /* PreferredTypeCollectionViewCell.swift */; };
+		5452283329B3BAA6003E659C /* SpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5452283229B3BAA6003E659C /* SpotViewModel.swift */; };
 		54534BE429AC22C100544CD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54534BE329AC22C100544CD2 /* GoogleService-Info.plist */; };
 		54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE529AC9C7600544CD2 /* SignInViewController.swift */; };
 		54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE729AC9C9800544CD2 /* SignUpViewController.swift */; };
@@ -73,6 +80,13 @@
 		545227F229B25B6A003E659C /* NewSpotFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpotFormViewController.swift; sourceTree = "<group>"; };
 		545227F429B25C8C003E659C /* NewSpotFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSpotFormViewModel.swift; sourceTree = "<group>"; };
 		545227F629B29C6D003E659C /* SpotForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotForm.swift; sourceTree = "<group>"; };
+		545227F829B35C9A003E659C /* SpotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotViewController.swift; sourceTree = "<group>"; };
+		5452282829B3ADBD003E659C /* ImageSpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSpotCollectionViewCell.swift; sourceTree = "<group>"; };
+		5452282A29B3AF40003E659C /* TitleSpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSpotCollectionViewCell.swift; sourceTree = "<group>"; };
+		5452282C29B3B1DF003E659C /* FullInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		5452282E29B3B2D0003E659C /* ButtonsSpotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsSpotCollectionViewCell.swift; sourceTree = "<group>"; };
+		5452283029B3B8F1003E659C /* PreferredTypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferredTypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		5452283229B3BAA6003E659C /* SpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotViewModel.swift; sourceTree = "<group>"; };
 		54534BE329AC22C100544CD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		54534BE529AC9C7600544CD2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		54534BE729AC9C9800544CD2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -200,6 +214,7 @@
 				54E2911729AF7DD2004AB99A /* MapViewModel.swift */,
 				54E2911E29AFB752004AB99A /* ProfileViewModel.swift */,
 				545227F429B25C8C003E659C /* NewSpotFormViewModel.swift */,
+				5452283229B3BAA6003E659C /* SpotViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -228,6 +243,11 @@
 			isa = PBXGroup;
 			children = (
 				5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */,
+				5452282829B3ADBD003E659C /* ImageSpotCollectionViewCell.swift */,
+				5452282A29B3AF40003E659C /* TitleSpotCollectionViewCell.swift */,
+				5452282C29B3B1DF003E659C /* FullInfoCollectionViewCell.swift */,
+				5452282E29B3B2D0003E659C /* ButtonsSpotCollectionViewCell.swift */,
+				5452283029B3B8F1003E659C /* PreferredTypeCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -257,6 +277,7 @@
 				543EFD9729AE0AE000949827 /* TransportViewController.swift */,
 				542E315129AEBA1500C1E786 /* MapViewController.swift */,
 				545227F229B25B6A003E659C /* NewSpotFormViewController.swift */,
+				545227F829B35C9A003E659C /* SpotViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -395,6 +416,7 @@
 			files = (
 				540B6CBA29ACDE3C000EC244 /* SignBaseViewController.swift in Sources */,
 				545227F129B2356F003E659C /* BottomSheetViewController.swift in Sources */,
+				5452282D29B3B1DF003E659C /* FullInfoCollectionViewCell.swift in Sources */,
 				543EFD9629AE08EE00949827 /* PrivateResources.swift in Sources */,
 				54028C9F29AD108F0047E9A9 /* MenuCellOption.swift in Sources */,
 				540B6CBE29ACFF16000EC244 /* BaseAccountViewController.swift in Sources */,
@@ -403,10 +425,12 @@
 				54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */,
 				54534BEA29AC9CEB00544CD2 /* SignUpViewModel.swift in Sources */,
 				542E315229AEBA1500C1E786 /* MapViewController.swift in Sources */,
+				5452282B29B3AF40003E659C /* TitleSpotCollectionViewCell.swift in Sources */,
 				5433F4F129B0A6490094B258 /* PopOverViewController.swift in Sources */,
 				5433F4F429B0A8060094B258 /* TransportsPopOverViewController.swift in Sources */,
 				540B6CBC29ACF1C9000EC244 /* SpinnerViewController.swift in Sources */,
 				54935DCA29A6DE70002FF436 /* Resources.swift in Sources */,
+				5452283129B3B8F1003E659C /* PreferredTypeCollectionViewCell.swift in Sources */,
 				540B6CB829ACDB60000EC244 /* SignInViewModel.swift in Sources */,
 				540B6CB429ACC6A2000EC244 /* User.swift in Sources */,
 				543EFD9A29AE11F100949827 /* TransportViewModel.swift in Sources */,
@@ -415,8 +439,11 @@
 				540B6CB629ACC70E000EC244 /* MenuViewController.swift in Sources */,
 				54028CA829AD221D0047E9A9 /* KeychainManager.swift in Sources */,
 				54935DCC29A6DFAA002FF436 /* LoginViewController.swift in Sources */,
+				5452282F29B3B2D0003E659C /* ButtonsSpotCollectionViewCell.swift in Sources */,
 				54E2911A29AF8C88004AB99A /* Spot.swift in Sources */,
+				5452283329B3BAA6003E659C /* SpotViewModel.swift in Sources */,
 				54E2911D29AFA102004AB99A /* SpotMarkerView.swift in Sources */,
+				545227F929B35C9A003E659C /* SpotViewController.swift in Sources */,
 				54935DC729A6DDBA002FF436 /* BaseViewController.swift in Sources */,
 				543EFD9829AE0AE000949827 /* TransportViewController.swift in Sources */,
 				54E2911629AF7D3C004AB99A /* Extension+MKMapView.swift in Sources */,
@@ -426,6 +453,7 @@
 				5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */,
 				545227F729B29C6D003E659C /* SpotForm.swift in Sources */,
 				540B6CB029AC9F89000EC244 /* Extension+UIView.swift in Sources */,
+				5452282929B3ADBD003E659C /* ImageSpotCollectionViewCell.swift in Sources */,
 				545227F329B25B6A003E659C /* NewSpotFormViewController.swift in Sources */,
 				5430E0E329AD46D0006E815F /* MenuCollectionViewCell.swift in Sources */,
 				54E2911829AF7DD2004AB99A /* MapViewModel.swift in Sources */,

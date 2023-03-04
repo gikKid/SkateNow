@@ -47,6 +47,7 @@ final class MapViewModel:NSObject {
                     var shortInfo:String?
                     var fullInfo:String?
                     var prefferedTransport:String?
+                    var imageURL:String?
                     
                     if let currentCoordinate = document.get(PrivateResources.spotCoordinateKey) {
                         let point = currentCoordinate as! GeoPoint
@@ -71,7 +72,11 @@ final class MapViewModel:NSObject {
                         prefferedTransport = currentPrefferedTransport
                     }
                     
-                    let spot = Spot(title: title, shortInfo: shortInfo, fullInfo: fullInfo, prefferedTransport: prefferedTransport, coordinate: coordinate)
+                    if let currentImageURL = document.get(PrivateResources.spotImageURLKey) as? String {
+                        imageURL = currentImageURL
+                    }
+                    
+                    let spot = Spot(title: title, shortInfo: shortInfo, fullInfo: fullInfo, prefferedTransport: prefferedTransport, coordinate: coordinate, imageURL: imageURL)
                     mapView.addAnnotation(spot)
                 }
             }
