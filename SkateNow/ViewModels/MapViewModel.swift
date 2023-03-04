@@ -118,7 +118,7 @@ final class MapViewModel:NSObject {
 //            annotation.coordinate = coordinate
 //            mapView.addAnnotation(annotation)
             
-            let newSpotFormVC = NewSpotFormViewController()
+            let newSpotFormVC = NewSpotFormViewController(coordinate)
             newSpotFormVC.modalPresentationStyle = .overCurrentContext
             newSpotFormVC.delegate = mapVC
             mapVC.present(newSpotFormVC,animated: false)

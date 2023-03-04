@@ -39,6 +39,9 @@ enum Resources {
         static let addSpot = "Add spot"
         static let generic = "Generic"
         static let fullInfo = "Full info"
+        static let takePhoto = "Take photo"
+        static let chooseFromPhotoGallery = "Choose from photo gallery"
+        static let ok = "OK"
     }
     
     enum Placeholders {

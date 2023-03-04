@@ -6,7 +6,7 @@ protocol TransportsPopOverViewControllerProtocol {
 
 class TransportsPopOverViewController: PopOverViewController {
     var delegate:TransportsPopOverViewControllerProtocol?
-    let content:[String] = [Resources.Titles.skateboard,Resources.Titles.scooter,Resources.Titles.bmx]
+    public var content:[String] = [Resources.Titles.skateboard,Resources.Titles.scooter,Resources.Titles.bmx]
 }
 
 extension TransportsPopOverViewController {

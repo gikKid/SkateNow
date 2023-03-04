@@ -1,4 +1,5 @@
 import UIKit
+import CoreLocation
 
 protocol NewSpotFormViewControllerProtocol {
     func handleDismiss()
@@ -14,15 +15,49 @@ class NewSpotFormViewController: BottomSheetViewController {
     let preferredTypeButton = UIButton()
     let pinPhotoButton = UIButton()
     let addedImageView = UIImageView()
+    let imagePicker = UIImagePickerController()
     var delegate:NewSpotFormViewControllerProtocol?
     lazy var viewModel = {
-       NewSpotFormViewModel()
+        NewSpotFormViewModel(coordinate)
     }()
+    let coordinate:CLLocationCoordinate2D
     
     private enum UIConstants {
         static let textViewHeight = 250.0
         static let confirmRightAnch = 20.0
-        static let imageHeight = 80.0
+        static let imageHeight = 120.0
+    }
+    
+    init(_ coordinate:CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.viewModel.stateHandler = { [weak self] state in
+            guard let self = self else {return}
+            switch state {
+            case .notFilled:
+                self.disableButton(self.confirmButton, .title)
+            case .filled:
+                self.enableButton(self.confirmButton, UIColor(named: Resources.Colors.mainColor) ?? .systemOrange, .title)
+            case .sending:
+                self.disableButton(self.confirmButton, .title)
+                self.createSpinnerView()
+            case .succesSent:
+                self.hideSpinnerView()
+                self.successfulySendRequestCompletion()
+            case .errorSent(let errorMessage):
+                self.enableButton(self.confirmButton, UIColor(named: Resources.Colors.mainColor) ?? .systemOrange, .title)
+                self.hideSpinnerView()
+                self.present(self.createInfoAlert(message: errorMessage, title: Resources.Titles.errorTitle),animated: true)
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,8 +86,12 @@ extension NewSpotFormViewController {
     override func configure() {
         super.configure()
         
+        let VCViewGestureRecogn = UITapGestureRecognizer(target: self, action: #selector(userTapPresentedVC(_:)))
+        self.view.addGestureRecognizer(VCViewGestureRecogn)
+        
         confirmButton.setTitle(Resources.Titles.confirm, for: .normal)
         self.disableButton(confirmButton, .title)
+        confirmButton.addTarget(self, action: #selector(userTapConfirmButton), for: .touchUpInside)
         
         cancelButton.setTitle(Resources.Titles.cancel, for: .normal)
         cancelButton.setTitleColor(UIColor(named: Resources.Colors.mainColor), for: .normal)
@@ -76,6 +115,7 @@ extension NewSpotFormViewController {
         
         pinPhotoButton.setTitleColor(.link, for: .normal)
         pinPhotoButton.setTitle("Pin photo", for: .normal)
+        pinPhotoButton.addTarget(self, action: #selector(pinButtonTapped), for: .touchUpInside)
         
         addedImageView.contentMode = .scaleAspectFit
         
@@ -84,6 +124,10 @@ extension NewSpotFormViewController {
         preferredTypeButton.semanticContentAttribute = .forceRightToLeft
         preferredTypeButton.setImage(UIImage(systemName: Resources.Images.edit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
         preferredTypeButton.tintColor = .lightGray
+        preferredTypeButton.addTarget(self, action: #selector(userTapPreferredTypeButton), for: .touchUpInside)
+        
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
     }
     
     override func layoutViews() {
@@ -110,7 +154,7 @@ extension NewSpotFormViewController {
             preferredTypeButton.centerYAnchor.constraint(equalTo: preferredTypeLabel.centerYAnchor),
             pinPhotoButton.leftAnchor.constraint(equalTo: preferredTypeLabel.leftAnchor),
             pinPhotoButton.topAnchor.constraint(equalTo: preferredTypeLabel.bottomAnchor, constant: 20),
-            addedImageView.centerYAnchor.constraint(equalTo: pinPhotoButton.centerYAnchor),
+            addedImageView.topAnchor.constraint(equalTo: preferredTypeButton.bottomAnchor,constant: 10),
             addedImageView.rightAnchor.constraint(equalTo: fullInfoTextView.rightAnchor),
             addedImageView.heightAnchor.constraint(equalToConstant: UIConstants.imageHeight),
             addedImageView.widthAnchor.constraint(equalTo: addedImageView.heightAnchor)
@@ -129,6 +173,35 @@ extension NewSpotFormViewController {
     @objc private func userTapCancelButton(_ sender:UIButton) {
         self.delegate?.handleDismiss()
         self.animateDismissView()
+    }
+    
+    @objc private func userTapConfirmButton(_ sender:UIButton) {
+        self.viewModel.sendRequest()
+    }
+    
+    @objc private func userTapPreferredTypeButton(_ sender: UIButton) {
+        self.viewModel.showTransportPopOver(preferredTypeButton, self, presentedViewController)
+    }
+    
+    @objc private func pinButtonTapped(_ sender:UIButton) {
+        self.viewModel.showImagePickerAlert(imagePicker, self)
+    }
+}
+
+
+//MARK: - Private methods
+extension NewSpotFormViewController {
+    @objc private func userTapPresentedVC(_ sender:UITapGestureRecognizer) {
+        presentedViewController?.dismiss(animated: true, completion: nil)
+        self.preferredTypeButton.setImage(UIImage(systemName: Resources.Images.edit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+    }
+    
+    private func successfulySendRequestCompletion() {
+        let alert = UIAlertController(title: Resources.Titles.success, message: "New spot was successfuly sent!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: Resources.Titles.ok, style: .default) {_ in
+            self.dismiss(animated: true)
+        })
+        self.present(alert,animated: true)
     }
 }
 
@@ -163,5 +236,40 @@ extension NewSpotFormViewController:UITextViewDelegate {
         } else {
             self.viewModel.setDataFullInfo(textView)
         }
+    }
+}
+
+
+
+//MARK: - TransportPopOverVCDelegate
+extension NewSpotFormViewController:TransportsPopOverViewControllerProtocol {
+    func passSelectedTransport(_ newTransport: String) {
+        self.viewModel.setDataPreferredType(newTransport)
+        self.preferredTypeButton.setTitle(newTransport, for: .normal)
+        self.preferredTypeButton.setImage(UIImage(systemName: Resources.Images.edit,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+    }
+}
+
+
+//MARK: - PopOverPresentationDelegate
+extension NewSpotFormViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        .none
+    }
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        false
+    }
+}
+
+
+//MARK: - ImagePickerDelegate
+extension NewSpotFormViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate  {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {return}
+        self.addedImageView.image = image
+        self.pinPhotoButton.setTitle("Edit photo", for: .normal)
+        self.viewModel.setImage(image)
+        picker.dismiss(animated: true, completion: nil)
     }
 }

@@ -68,11 +68,11 @@ final class ProfileViewModel:NSObject {
     
     public func createPickerAlert(_ picker:UIImagePickerController,_ profileVC:ProfileViewController) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Take photo", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: Resources.Titles.takePhoto, style: .default, handler: { _ in
             picker.sourceType = .camera
             profileVC.present(picker, animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "Choose from photo gallery", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: Resources.Titles.chooseFromPhotoGallery, style: .default, handler: { _ in
             profileVC.present(picker, animated: true)
         }))
         alert.addAction(UIAlertAction(title: Resources.Titles.cancel, style: .cancel))
