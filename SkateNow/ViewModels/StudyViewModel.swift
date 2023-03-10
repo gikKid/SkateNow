@@ -48,6 +48,7 @@ final class StudyViewModel:NSObject {
     
     public func fetchData(_ user:UserFirebase?) {
         guard let user = user else {return}
+        self.cellsData.removeAll()
         self.state = .fetching
         DispatchQueue.global(qos: .userInitiated).async {
             self.db.collection(PrivateResources.usersCollection).document(user.email.lowercased()).getDocument(completion: { [weak self] (document,error) in

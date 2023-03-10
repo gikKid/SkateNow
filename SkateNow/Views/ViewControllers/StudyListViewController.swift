@@ -3,6 +3,7 @@ import UIKit
 class StudyListViewController: BaseAccountViewController {
 
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+    let refreshControl = UIRefreshControl()
     let searchBar = UISearchBar()
     lazy var viewModel = {
       StudyViewModel()
@@ -57,6 +58,10 @@ extension StudyListViewController {
         collectionView.register(StudyCollectionViewCell.self, forCellWithReuseIdentifier: Resources.Identefiers.studyCollectionViewCell)
         collectionView.keyboardDismissMode = .onDrag
         
+        refreshControl.tintColor = UIColor(named: Resources.Colors.mainColor)
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
+        
         searchBar.searchBarStyle = UISearchBar.Style.default
         searchBar.placeholder = " Search..."
         searchBar.sizeToFit()
@@ -103,7 +108,13 @@ extension StudyListViewController {
     private func refreshCollection() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.collectionView.refreshControl?.endRefreshing()
         }
+    }
+    
+    @objc private func refreshContent() {
+        self.searchBar.text?.removeAll()
+        self.viewModel.fetchData(super.currentUser)
     }
 }
 
