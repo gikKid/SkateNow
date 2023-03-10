@@ -43,6 +43,7 @@ enum Resources {
         static let chooseFromPhotoGallery = "Choose from photo gallery"
         static let close = "Close"
         static let share = "Share"
+        static let done = "Done"
     }
     
     enum Placeholders {
@@ -76,6 +77,8 @@ enum Resources {
         static let starFill = "star.fill"
         static let emptyStar = "star"
         static let halfStar = "star.lefthalf.fill"
+        static let square = "square"
+        static let checkedSquare = "checkmark.square"
     }
     
     enum Identefiers {

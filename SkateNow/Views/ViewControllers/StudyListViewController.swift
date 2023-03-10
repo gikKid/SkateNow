@@ -147,6 +147,10 @@ extension StudyListViewController: UICollectionViewDelegate,UICollectionViewData
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.viewModel.didSelectItemAt(studyListVC: self,indexPath)
+    }
 }
 
 //MARK: - SearchBarDelegate

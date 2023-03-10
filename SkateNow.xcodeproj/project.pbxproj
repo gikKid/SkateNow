@@ -20,6 +20,10 @@
 		540B6CBE29ACFF16000EC244 /* BaseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */; };
 		54195CB229BB447400A8A4AD /* StudyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54195CB129BB447400A8A4AD /* StudyViewModel.swift */; };
 		54195CB629BB511500A8A4AD /* StudyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54195CB529BB511500A8A4AD /* StudyCellModel.swift */; };
+		54195CB829BB846000A8A4AD /* TrickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54195CB729BB846000A8A4AD /* TrickViewController.swift */; };
+		54195CBA29BB87EA00A8A4AD /* TrickViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54195CB929BB87EA00A8A4AD /* TrickViewModel.swift */; };
+		54195CBC29BB908900A8A4AD /* TrickSlide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54195CBB29BB908900A8A4AD /* TrickSlide.swift */; };
+		54195CBE29BB9DBE00A8A4AD /* Trick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54195CBD29BB9DBE00A8A4AD /* Trick.swift */; };
 		542E315229AEBA1500C1E786 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542E315129AEBA1500C1E786 /* MapViewController.swift */; };
 		5430E0E329AD46D0006E815F /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */; };
 		5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E0E429AD4AE7006E815F /* ProfileViewController.swift */; };
@@ -75,6 +79,10 @@
 		540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAccountViewController.swift; sourceTree = "<group>"; };
 		54195CB129BB447400A8A4AD /* StudyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyViewModel.swift; sourceTree = "<group>"; };
 		54195CB529BB511500A8A4AD /* StudyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyCellModel.swift; sourceTree = "<group>"; };
+		54195CB729BB846000A8A4AD /* TrickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrickViewController.swift; sourceTree = "<group>"; };
+		54195CB929BB87EA00A8A4AD /* TrickViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrickViewModel.swift; sourceTree = "<group>"; };
+		54195CBB29BB908900A8A4AD /* TrickSlide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrickSlide.swift; sourceTree = "<group>"; };
+		54195CBD29BB9DBE00A8A4AD /* Trick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trick.swift; sourceTree = "<group>"; };
 		542E315129AEBA1500C1E786 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		5430E0E429AD4AE7006E815F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				54E2911C29AFA102004AB99A /* SpotMarkerView.swift */,
+				54195CBB29BB908900A8A4AD /* TrickSlide.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -226,6 +235,7 @@
 				545227F429B25C8C003E659C /* NewSpotFormViewModel.swift */,
 				5452283229B3BAA6003E659C /* SpotViewModel.swift */,
 				54195CB129BB447400A8A4AD /* StudyViewModel.swift */,
+				54195CB929BB87EA00A8A4AD /* TrickViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -238,6 +248,7 @@
 				54E2911929AF8C88004AB99A /* Spot.swift */,
 				545227F629B29C6D003E659C /* SpotForm.swift */,
 				54195CB529BB511500A8A4AD /* StudyCellModel.swift */,
+				54195CBD29BB9DBE00A8A4AD /* Trick.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -293,6 +304,7 @@
 				545227F829B35C9A003E659C /* SpotViewController.swift */,
 				5454686129B48D9D0024B63D /* StudyListViewController.swift */,
 				5454686529B50E010024B63D /* GameViewController.swift */,
+				54195CB729BB846000A8A4AD /* TrickViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -446,6 +458,7 @@
 				5454686629B50E010024B63D /* GameViewController.swift in Sources */,
 				5433F4F129B0A6490094B258 /* PopOverViewController.swift in Sources */,
 				5433F4F429B0A8060094B258 /* TransportsPopOverViewController.swift in Sources */,
+				54195CB829BB846000A8A4AD /* TrickViewController.swift in Sources */,
 				540B6CBC29ACF1C9000EC244 /* SpinnerViewController.swift in Sources */,
 				54935DCA29A6DE70002FF436 /* Resources.swift in Sources */,
 				5452283129B3B8F1003E659C /* PreferredTypeCollectionViewCell.swift in Sources */,
@@ -462,8 +475,11 @@
 				54E2911A29AF8C88004AB99A /* Spot.swift in Sources */,
 				5452283329B3BAA6003E659C /* SpotViewModel.swift in Sources */,
 				54E2911D29AFA102004AB99A /* SpotMarkerView.swift in Sources */,
+				54195CBA29BB87EA00A8A4AD /* TrickViewModel.swift in Sources */,
+				54195CBE29BB9DBE00A8A4AD /* Trick.swift in Sources */,
 				545227F929B35C9A003E659C /* SpotViewController.swift in Sources */,
 				54935DC729A6DDBA002FF436 /* BaseViewController.swift in Sources */,
+				54195CBC29BB908900A8A4AD /* TrickSlide.swift in Sources */,
 				543EFD9829AE0AE000949827 /* TransportViewController.swift in Sources */,
 				54E2911629AF7D3C004AB99A /* Extension+MKMapView.swift in Sources */,
 				545227F529B25C8C003E659C /* NewSpotFormViewModel.swift in Sources */,

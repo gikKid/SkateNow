@@ -129,4 +129,14 @@ final class StudyViewModel:NSObject {
             self.state = .filterSearch
         }
     }
+    
+    public func didSelectItemAt(studyListVC:StudyListViewController,_ indexPath: IndexPath) {
+        if self.state == .fetching || self.state == .failureFetch{
+            return
+        }
+        guard let trickName = self.state == .filterSearch ? searchedCells[indexPath.row].name : cellsData[indexPath.row].name else {return}
+        guard let transportType = self.userTransport else {return}
+        let trickViewController = TrickViewController(trickName: trickName,transportType: transportType)
+        studyListVC.navigationController?.pushViewController(trickViewController, animated: true)
+    }
 }
