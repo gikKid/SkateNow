@@ -19,13 +19,11 @@ class MenuViewController: BaseAccountViewController {
             case Resources.Titles.game:
                 break
             case Resources.Titles.study:
-                break
+                self?.navigationController?.pushViewController(StudyListViewController(), animated: true)
             case Resources.Titles.map:
                 self?.navigationController?.pushViewController(MapViewController(), animated: true)
-                break
             case Resources.Titles.profile:
                 self?.navigationController?.pushViewController(ProfileViewController(), animated: true)
-                break
             default:
                 break
             }

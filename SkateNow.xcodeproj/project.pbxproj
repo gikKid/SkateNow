@@ -18,6 +18,8 @@
 		540B6CBA29ACDE3C000EC244 /* SignBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CB929ACDE3C000EC244 /* SignBaseViewController.swift */; };
 		540B6CBC29ACF1C9000EC244 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CBB29ACF1C9000EC244 /* SpinnerViewController.swift */; };
 		540B6CBE29ACFF16000EC244 /* BaseAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */; };
+		54195CB229BB447400A8A4AD /* StudyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54195CB129BB447400A8A4AD /* StudyViewModel.swift */; };
+		54195CB629BB511500A8A4AD /* StudyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54195CB529BB511500A8A4AD /* StudyCellModel.swift */; };
 		542E315229AEBA1500C1E786 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542E315129AEBA1500C1E786 /* MapViewController.swift */; };
 		5430E0E329AD46D0006E815F /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */; };
 		5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5430E0E429AD4AE7006E815F /* ProfileViewController.swift */; };
@@ -41,6 +43,9 @@
 		54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE529AC9C7600544CD2 /* SignInViewController.swift */; };
 		54534BE829AC9C9800544CD2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE729AC9C9800544CD2 /* SignUpViewController.swift */; };
 		54534BEA29AC9CEB00544CD2 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54534BE929AC9CEB00544CD2 /* SignUpViewModel.swift */; };
+		5454686229B48D9D0024B63D /* StudyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454686129B48D9D0024B63D /* StudyListViewController.swift */; };
+		5454686429B495140024B63D /* StudyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454686329B495140024B63D /* StudyCollectionViewCell.swift */; };
+		5454686629B50E010024B63D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5454686529B50E010024B63D /* GameViewController.swift */; };
 		54935DAF29A6D61C002FF436 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DAE29A6D61C002FF436 /* AppDelegate.swift */; };
 		54935DB129A6D61C002FF436 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54935DB029A6D61C002FF436 /* SceneDelegate.swift */; };
 		54935DB829A6D622002FF436 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54935DB729A6D622002FF436 /* Assets.xcassets */; };
@@ -68,6 +73,8 @@
 		540B6CB929ACDE3C000EC244 /* SignBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignBaseViewController.swift; sourceTree = "<group>"; };
 		540B6CBB29ACF1C9000EC244 /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		540B6CBD29ACFF16000EC244 /* BaseAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAccountViewController.swift; sourceTree = "<group>"; };
+		54195CB129BB447400A8A4AD /* StudyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyViewModel.swift; sourceTree = "<group>"; };
+		54195CB529BB511500A8A4AD /* StudyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyCellModel.swift; sourceTree = "<group>"; };
 		542E315129AEBA1500C1E786 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5430E0E229AD46D0006E815F /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		5430E0E429AD4AE7006E815F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +98,9 @@
 		54534BE529AC9C7600544CD2 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		54534BE729AC9C9800544CD2 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		54534BE929AC9CEB00544CD2 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		5454686129B48D9D0024B63D /* StudyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyListViewController.swift; sourceTree = "<group>"; };
+		5454686329B495140024B63D /* StudyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyCollectionViewCell.swift; sourceTree = "<group>"; };
+		5454686529B50E010024B63D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		54935DAB29A6D61C002FF436 /* SkateNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SkateNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54935DAE29A6D61C002FF436 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54935DB029A6D61C002FF436 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,6 +225,7 @@
 				54E2911E29AFB752004AB99A /* ProfileViewModel.swift */,
 				545227F429B25C8C003E659C /* NewSpotFormViewModel.swift */,
 				5452283229B3BAA6003E659C /* SpotViewModel.swift */,
+				54195CB129BB447400A8A4AD /* StudyViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -226,6 +237,7 @@
 				54028C9E29AD108F0047E9A9 /* MenuCellOption.swift */,
 				54E2911929AF8C88004AB99A /* Spot.swift */,
 				545227F629B29C6D003E659C /* SpotForm.swift */,
+				54195CB529BB511500A8A4AD /* StudyCellModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -248,6 +260,7 @@
 				5452282C29B3B1DF003E659C /* FullInfoCollectionViewCell.swift */,
 				5452282E29B3B2D0003E659C /* ButtonsSpotCollectionViewCell.swift */,
 				5452283029B3B8F1003E659C /* PreferredTypeCollectionViewCell.swift */,
+				5454686329B495140024B63D /* StudyCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -278,6 +291,8 @@
 				542E315129AEBA1500C1E786 /* MapViewController.swift */,
 				545227F229B25B6A003E659C /* NewSpotFormViewController.swift */,
 				545227F829B35C9A003E659C /* SpotViewController.swift */,
+				5454686129B48D9D0024B63D /* StudyListViewController.swift */,
+				5454686529B50E010024B63D /* GameViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -414,9 +429,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5454686229B48D9D0024B63D /* StudyListViewController.swift in Sources */,
 				540B6CBA29ACDE3C000EC244 /* SignBaseViewController.swift in Sources */,
 				545227F129B2356F003E659C /* BottomSheetViewController.swift in Sources */,
 				5452282D29B3B1DF003E659C /* FullInfoCollectionViewCell.swift in Sources */,
+				5454686429B495140024B63D /* StudyCollectionViewCell.swift in Sources */,
 				543EFD9629AE08EE00949827 /* PrivateResources.swift in Sources */,
 				54028C9F29AD108F0047E9A9 /* MenuCellOption.swift in Sources */,
 				540B6CBE29ACFF16000EC244 /* BaseAccountViewController.swift in Sources */,
@@ -426,6 +443,7 @@
 				54534BEA29AC9CEB00544CD2 /* SignUpViewModel.swift in Sources */,
 				542E315229AEBA1500C1E786 /* MapViewController.swift in Sources */,
 				5452282B29B3AF40003E659C /* TitleSpotCollectionViewCell.swift in Sources */,
+				5454686629B50E010024B63D /* GameViewController.swift in Sources */,
 				5433F4F129B0A6490094B258 /* PopOverViewController.swift in Sources */,
 				5433F4F429B0A8060094B258 /* TransportsPopOverViewController.swift in Sources */,
 				540B6CBC29ACF1C9000EC244 /* SpinnerViewController.swift in Sources */,
@@ -436,6 +454,7 @@
 				543EFD9A29AE11F100949827 /* TransportViewModel.swift in Sources */,
 				54534BE629AC9C7600544CD2 /* SignInViewController.swift in Sources */,
 				54935DB129A6D61C002FF436 /* SceneDelegate.swift in Sources */,
+				54195CB629BB511500A8A4AD /* StudyCellModel.swift in Sources */,
 				540B6CB629ACC70E000EC244 /* MenuViewController.swift in Sources */,
 				54028CA829AD221D0047E9A9 /* KeychainManager.swift in Sources */,
 				54935DCC29A6DFAA002FF436 /* LoginViewController.swift in Sources */,
@@ -451,6 +470,7 @@
 				54E2911F29AFB752004AB99A /* ProfileViewModel.swift in Sources */,
 				540B6CB229ACA3B8000EC244 /* LoginViewModel.swift in Sources */,
 				5430E0E529AD4AE7006E815F /* ProfileViewController.swift in Sources */,
+				54195CB229BB447400A8A4AD /* StudyViewModel.swift in Sources */,
 				545227F729B29C6D003E659C /* SpotForm.swift in Sources */,
 				540B6CB029AC9F89000EC244 /* Extension+UIView.swift in Sources */,
 				5452282929B3ADBD003E659C /* ImageSpotCollectionViewCell.swift in Sources */,

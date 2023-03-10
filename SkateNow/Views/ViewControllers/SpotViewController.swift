@@ -214,7 +214,13 @@ extension SpotViewController:ButtonsSpotCollectionViewCellProtocol {
         activityVC.activityItemsConfiguration = [UIActivity.ActivityType.message] as? UIActivityItemsConfigurationReading
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.print,
                                             UIActivity.ActivityType.saveToCameraRoll,
-                                            UIActivity.ActivityType.addToReadingList]
+                                            UIActivity.ActivityType.addToReadingList,
+                                            UIActivity.ActivityType.airDrop,
+                                            UIActivity.ActivityType.mail,
+                                            UIActivity.ActivityType.copyToPasteboard,
+                                            UIActivity.ActivityType.message,
+                                            UIActivity.ActivityType.postToFacebook,
+                                            UIActivity.ActivityType.postToTwitter]
         activityVC.isModalInPresentation = true
         self.present(activityVC,animated: true)
     }

@@ -81,44 +81,50 @@ final class ProfileViewModel:NSObject {
     
     public func updateFields(_ user:UserFirebase?, _ nameTextField:UITextField,_ transportButton:UIButton, _ backgroundImageView:UIImageView,_ avatarImageView:UIImageView) {
         guard let user = user else {return}
-        db.collection(PrivateResources.usersCollection).document(user.email.lowercased()).getDocument(completion: { [weak self] (document, error) in
-            guard let self = self else {return}
-            if let error = error {
-                self.errorServerHandler?("Fail to get your data \(error)")
-                return
-            }
-            guard let document = document else {return}
-            if let name = document.get(PrivateResources.usersNameKey) as? String {
-                nameTextField.text = name
-            }
-            
-            if let transport = document.get(PrivateResources.usersTransportKey) as? String {
-                transportButton.setTitle(transport, for: .normal)
-            }
-            
-            if let backgroundImagePath = document.get(PrivateResources.usersBackgorundImageURLKey) as? String {
-                self.getImageData(path: backgroundImagePath, imageView: backgroundImageView)
-            }
-            
-            if let avatarImagePath = document.get(PrivateResources.usersAvatarImageURLKey) as? String {
-                self.getImageData(path: avatarImagePath, imageView: avatarImageView)
-            }
-            
-        })
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.db.collection(PrivateResources.usersCollection).document(user.email.lowercased()).getDocument(completion: { [weak self] (document, error) in
+                guard let self = self else {return}
+                if let error = error {
+                    self.errorServerHandler?("Fail to get your data \(error)")
+                    return
+                }
+                guard let document = document else {return}
+                if let name = document.get(PrivateResources.usersNameKey) as? String {
+                    nameTextField.text = name
+                }
+                
+                if let transport = document.get(PrivateResources.usersTransportKey) as? String {
+                    transportButton.setTitle(transport, for: .normal)
+                }
+                
+                if let backgroundImagePath = document.get(PrivateResources.usersBackgorundImageURLKey) as? String {
+                    self.getImageData(path: backgroundImagePath, imageView: backgroundImageView)
+                }
+                
+                if let avatarImagePath = document.get(PrivateResources.usersAvatarImageURLKey) as? String {
+                    self.getImageData(path: avatarImagePath, imageView: avatarImageView)
+                }
+                
+            })
+        }
     }
     
     private func getImageData(path:String, imageView:UIImageView) {
         let islandPath = storageRef.child(path)
-        islandPath.getData(maxSize: 1 * 1024 * 1024, completion: { [weak self] data, error in
-            guard let self = self else {return}
-            if let error = error {
-                self.errorServerHandler?("Fail to load image: \(error)")
-                return
-            }
-            
-            let image = UIImage(data: data!)
-            imageView.image = image
-        })
+        DispatchQueue.global(qos: .userInitiated).async {
+            islandPath.getData(maxSize: 1 * 1024 * 1024, completion: { [weak self] data, error in
+                guard let self = self else {return}
+                if let error = error {
+                    self.errorServerHandler?("Fail to load image: \(error)")
+                    return
+                }
+                
+                let image = UIImage(data: data!)
+                DispatchQueue.main.async {
+                    imageView.image = image
+                }
+            })
+        }
     }
     
     public func changeName(_ newName:String?) {
@@ -143,34 +149,36 @@ final class ProfileViewModel:NSObject {
     
     public func sendChange(_ user:UserFirebase?) {
         guard let user = user else {return}
-        if let name = newnName {
-            db.collection(PrivateResources.usersCollection).document(user.email).updateData([
-                PrivateResources.usersNameKey: name
-            ]) { err in
-                if let err = err {
-                    self.errorServerHandler?("Error update name: \(err)")
-                    return
+        DispatchQueue.global(qos: .utility).async { [unowned self] in
+            if let name = self.newnName {
+                self.db.collection(PrivateResources.usersCollection).document(user.email).updateData([
+                    PrivateResources.usersNameKey: name
+                ]) { err in
+                    if let err = err {
+                        self.errorServerHandler?("Error update name: \(err)")
+                        return
+                    }
                 }
             }
-        }
-        
-        if let newTransport = newTransport {
-            db.collection(PrivateResources.usersCollection).document(user.email).updateData([
-                PrivateResources.usersTransportKey: newTransport
-            ]) { err in
-                if let err = err {
-                    self.errorServerHandler?("Error update: \(err)")
-                    return
+            
+            if let newTransport = self.newTransport {
+                self.db.collection(PrivateResources.usersCollection).document(user.email).updateData([
+                    PrivateResources.usersTransportKey: newTransport
+                ]) { err in
+                    if let err = err {
+                        self.errorServerHandler?("Error update: \(err)")
+                        return
+                    }
                 }
             }
-        }
-        
-        if let newBackgroundImage = newBackgroundImage {
-            self.uploadImage(image: newBackgroundImage, user: user, folderName: PrivateResources.backgroundStorageFolder, userFieldKey: PrivateResources.usersBackgorundImageURLKey)
-        }
-        
-        if let newAvatarImage = newAvatarImage {
-            self.uploadImage(image: newAvatarImage, user: user, folderName: PrivateResources.avatarsStorageFolder, userFieldKey: PrivateResources.usersAvatarImageURLKey)
+            
+            if let newBackgroundImage = self.newBackgroundImage {
+                self.uploadImage(image: newBackgroundImage, user: user, folderName: PrivateResources.backgroundStorageFolder, userFieldKey: PrivateResources.usersBackgorundImageURLKey)
+            }
+            
+            if let newAvatarImage = self.newAvatarImage {
+                self.uploadImage(image: newAvatarImage, user: user, folderName: PrivateResources.avatarsStorageFolder, userFieldKey: PrivateResources.usersAvatarImageURLKey)
+            }
         }
         
         self.state = .successConfirmChange

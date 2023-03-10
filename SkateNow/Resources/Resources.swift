@@ -52,6 +52,11 @@ enum Resources {
     
     enum Colors {
         static let mainColor = "mainColor"
+        static let gradientDarkGrey = UIColor(red: 239/255.0, green: 241/255.0, blue: 241/255.0, alpha: 1)
+        static let gradientLightGrey = UIColor(red: 201/255.0, green: 201/255.0, blue: 201/255.0, alpha: 1)
+        static let firstLevelTrick = "firstLevelTrick"
+        static let secondLevelTrick = "secondLevelTrick"
+        static let thirdLevelTrick = "thirdLevelTrick"
     }
     
     enum Images {
@@ -68,6 +73,9 @@ enum Resources {
         static let notEdit = "pencil.slash"
         static let share = "square.and.arrow.up"
         static let multiply = "multiply"
+        static let starFill = "star.fill"
+        static let emptyStar = "star"
+        static let halfStar = "star.lefthalf.fill"
     }
     
     enum Identefiers {
@@ -79,5 +87,6 @@ enum Resources {
         static let preferredTypeSpotCollectionViewCell = "preferredTypeCollectionCell"
         static let fullInfoSpotCollectionViewCell = "fullInfoCollectionCell"
         static let buttonsSpotCollectionViewCell = "buttonsCollectionCell"
+        static let studyCollectionViewCell = "studyCollectionCell"
     }
 }

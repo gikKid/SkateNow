@@ -56,6 +56,7 @@ extension MapViewController {
         
         mapView.delegate = self
         mapView.mapType = .standard
+        mapView.showsCompass = true
         mapView.isZoomEnabled = true
         mapView.isScrollEnabled = true
         mapView.showsUserLocation = true
