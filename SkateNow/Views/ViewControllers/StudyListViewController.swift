@@ -22,6 +22,8 @@ class StudyListViewController: BaseAccountViewController {
                 self.present(self.createInfoAlert(message: "Failure to fetch data", title: Resources.Titles.errorTitle), animated: true)
             case .successFetch:
                 self.refreshCollection()
+            case .filterSearch:
+                self.refreshCollection()
             }
         }
         
@@ -53,6 +55,7 @@ extension StudyListViewController {
         collectionView.delegate = self
         collectionView.collectionViewLayout = createCompositionLayout()
         collectionView.register(StudyCollectionViewCell.self, forCellWithReuseIdentifier: Resources.Identefiers.studyCollectionViewCell)
+        collectionView.keyboardDismissMode = .onDrag
         
         searchBar.searchBarStyle = UISearchBar.Style.default
         searchBar.placeholder = " Search..."
@@ -114,7 +117,7 @@ extension StudyListViewController: UICollectionViewDelegate,UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.viewModel.numberOfItemsInSection() == 0 ? UIConstants.defaultCountCells : self.viewModel.numberOfItemsInSection()
+        return (self.viewModel.numberOfItemsInSection() == 0 && self.viewModel.state != .filterSearch) ? UIConstants.defaultCountCells : self.viewModel.numberOfItemsInSection()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -125,8 +128,9 @@ extension StudyListViewController: UICollectionViewDelegate,UICollectionViewData
         case .successFetch:
             let cellModel = self.viewModel.getCellModel(indexPath)
             cell.configureCell(cellModel)
-        case .failureFetch:
-            break
+        case .filterSearch:
+            let cellModel = self.viewModel.getCellModel(indexPath)
+            cell.configureCell(cellModel)
         default:
             break
         }
@@ -137,6 +141,6 @@ extension StudyListViewController: UICollectionViewDelegate,UICollectionViewData
 //MARK: - SearchBarDelegate
 extension StudyListViewController:UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        self.viewModel.sortSearch(text: searchText)
     }
 }

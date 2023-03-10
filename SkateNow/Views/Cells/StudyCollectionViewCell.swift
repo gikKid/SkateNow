@@ -30,13 +30,12 @@ class StudyCollectionViewCell: UICollectionViewCell {
         
         starsHorizontStackView.alignment = .center
         starsHorizontStackView.axis = .horizontal
-        starsHorizontStackView.distribution = .equalCentering
+        starsHorizontStackView.distribution = .equalSpacing
         
         self.addView(starsHorizontStackView)
         
         NSLayoutConstraint.activate([
-            starsHorizontStackView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -2),
-            starsHorizontStackView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 2),
+            starsHorizontStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             starsHorizontStackView.topAnchor.constraint(lessThanOrEqualTo: self.topAnchor, constant: 2),
             starsHorizontStackView.bottomAnchor.constraint(equalTo: label.topAnchor, constant: -5),
             label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -74,6 +73,7 @@ class StudyCollectionViewCell: UICollectionViewCell {
     }
     
     private func setStars(level: Int) {
+        starsHorizontStackView.arrangedSubviews.forEach({$0.removeFromSuperview()})
         for number in 0..<UIConstants.countOfStars{
             let starImageView = UIImageView(image: UIImage(systemName: number < level ? Resources.Images.starFill : Resources.Images.emptyStar))
             starImageView.tintColor = .systemYellow

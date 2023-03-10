@@ -5,6 +5,7 @@ enum StudyState {
     case fetching
     case failureFetch
     case successFetch
+    case filterSearch
 }
 
 enum TransportType {
@@ -25,14 +26,24 @@ final class StudyViewModel:NSObject {
     private let db = Firestore.firestore()
     private var userTransport:TransportType?
     var cellsData = [StudyCellModel]()
+    var searchedCells = [StudyCellModel]()
     
     
     public func numberOfItemsInSection() -> Int {
-        return cellsData.count
+        switch state {
+        case .filterSearch:
+            return searchedCells.count
+        default:
+            return cellsData.count
+        }
     }
     
     public func getCellModel(_ indexPath:IndexPath) -> StudyCellModel {
-        cellsData[indexPath.row]
+        if self.state == .filterSearch {
+            return searchedCells[indexPath.row]
+        } else {
+            return cellsData[indexPath.row]
+        }
     }
     
     public func fetchData(_ user:UserFirebase?) {
@@ -109,4 +120,12 @@ final class StudyViewModel:NSObject {
         }
     }
     
+    public func sortSearch(text:String) {
+        if text.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            self.state = .successFetch
+        } else {
+            self.searchedCells = cellsData.filter{$0.name!.lowercased().contains(text.lowercased())}
+            self.state = .filterSearch
+        }
+    }
 }
