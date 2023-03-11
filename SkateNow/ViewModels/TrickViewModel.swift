@@ -72,6 +72,60 @@ final class TrickViewModel:NSObject {
             self.loadImage(imageURL: imagesURL[index], slide: slide)
         }
     }
+    
+    public func updateUserButtonState(user:UserFirebase?,key:String,isEmpty:Bool) {
+        guard let user = user else {return}
+        
+        if isEmpty {
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.db.collection(PrivateResources.usersCollection).document(user.email.lowercased()).updateData([
+                    key: FieldValue.arrayUnion([self.trick.name])
+                ])
+            }
+        } else {
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.db.collection(PrivateResources.usersCollection).document(user.email.lowercased()).updateData([
+                    key: FieldValue.arrayRemove([self.trick.name])
+                ])
+            }
+        }
+    }
+    
+    public func configureUserFields(user:UserFirebase?,doneButton:UIButton,starButton:UIButton) {
+        guard let user = user else {return}
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.db.collection(PrivateResources.usersCollection).document(user.email.lowercased()).getDocument(completion: { [weak self] (document,error) in
+                guard let self = self else {return}
+                if let _ = error {
+                    self.serverErrorHandler?("Fail to load user data")
+                }
+                
+                guard let document = document else {return}
+                
+                if let doneTricks = document.get(PrivateResources.usersDoneTricksKey) as? [String] {
+                    doneTricks.forEach({
+                        if self.trick.name == $0 {
+                            DispatchQueue.main.async {
+                                doneButton.setImage(UIImage(systemName: Resources.Images.checkedSquare,withConfiguration:UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)), for: .normal)
+                            }
+                            return
+                        }
+                    })
+                }
+                
+                if let favoriteTricks = document.get(PrivateResources.usersFavoriteTricksKey) as? [String] {
+                    favoriteTricks.forEach({
+                        if self.trick.name == $0 {
+                            DispatchQueue.main.async {
+                                starButton.setImage(UIImage(systemName: Resources.Images.starFill,withConfiguration:UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)), for: .normal)
+                            }
+                            return
+                        }
+                    })
+                }
+            })
+        }
+    }
 
     private func loadImage(imageURL:String,slide:TrickSlide) {
         let islandPath = storageRef.child(imageURL)

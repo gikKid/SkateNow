@@ -18,6 +18,12 @@ class TrickViewController: BaseAccountViewController {
         static let bottomAnchor = 20.0
         static let spaceBetweenBottomButtonAndPageControl = 20.0
         static let spaceBetweenPageControlAndSlide = 10.0
+        static let favoriteImageConfigure = UIImage.SymbolConfiguration(pointSize: 25, weight: .bold, scale: .large)
+        static let favoriteEmptyImage = UIImage(systemName: Resources.Images.emptyStar,withConfiguration: UIConstants.favoriteImageConfigure)
+        static let favoriteFillImage = UIImage(systemName: Resources.Images.starFill,withConfiguration: UIConstants.favoriteImageConfigure)
+        static let doneEmptyImage = UIImage(systemName: Resources.Images.square,withConfiguration:UIConstants.doneImageConfigure)
+        static let doneCheckImage = UIImage(systemName: Resources.Images.checkedSquare,withConfiguration:UIConstants.doneImageConfigure)
+        static let doneImageConfigure = UIImage.SymbolConfiguration(pointSize: 20, weight: .bold, scale: .large)
     }
     
     init(trickName: String,transportType:TransportType) {
@@ -45,6 +51,10 @@ class TrickViewController: BaseAccountViewController {
             }
         }
     }
+    
+    override func userDataUpdate() {
+        self.viewModel.configureUserFields(user: super.currentUser, doneButton: doneTrickButton, starButton: favoriteButton)
+    }
 }
 
 
@@ -70,17 +80,15 @@ extension TrickViewController {
         pageControl.currentPageIndicatorTintColor = .gray
         view.bringSubviewToFront(pageControl)
         
-        //FIXME: - Check if user done this trick
         doneTrickButton.setTitle(Resources.Titles.done, for: .normal)
         doneTrickButton.setTitleColor(.link, for: .normal)
-        doneTrickButton.setImage(UIImage(systemName: Resources.Images.square), for: .normal)
+        doneTrickButton.setImage(UIConstants.doneEmptyImage, for: .normal)
         doneTrickButton.tintColor = .link
         doneTrickButton.semanticContentAttribute = .forceRightToLeft
         doneTrickButton.addTarget(self, action: #selector(doneButtonTapped), for: .touchUpInside)
         view.bringSubviewToFront(doneTrickButton)
         
-        //FIXME: - Check if user favorite this trick
-        favoriteButton.setImage(UIImage(systemName: Resources.Images.starFill,withConfiguration: UIImage.SymbolConfiguration(scale: .large)), for: .normal)
+        favoriteButton.setImage(UIConstants.favoriteEmptyImage, for: .normal)
         favoriteButton.tintColor = .systemYellow
         favoriteButton.addTarget(self, action: #selector(favoriteButtonTapped), for: .touchUpInside)
         view.bringSubviewToFront(favoriteButton)
@@ -134,11 +142,23 @@ extension TrickViewController {
     }
     
     @objc private func doneButtonTapped(_ sender:UIButton) {
-        
+        if doneTrickButton.imageView?.image == UIConstants.doneEmptyImage {
+            self.viewModel.updateUserButtonState(user: super.currentUser, key: PrivateResources.usersDoneTricksKey, isEmpty: true)
+            self.doneTrickButton.setImage(UIConstants.doneCheckImage, for: .normal)
+        } else {
+            self.viewModel.updateUserButtonState(user: super.currentUser, key: PrivateResources.usersDoneTricksKey, isEmpty: false)
+            self.doneTrickButton.setImage(UIConstants.doneEmptyImage, for: .normal)
+        }
     }
     
     @objc private func favoriteButtonTapped(_ sender:UIButton) {
-        
+        if favoriteButton.imageView?.image == UIConstants.favoriteEmptyImage {
+            self.viewModel.updateUserButtonState(user: super.currentUser, key: PrivateResources.usersFavoriteTricksKey, isEmpty: true)
+            self.favoriteButton.setImage(UIConstants.favoriteFillImage, for: .normal)
+        } else {
+            self.viewModel.updateUserButtonState(user: super.currentUser, key: PrivateResources.usersFavoriteTricksKey, isEmpty: false)
+            self.favoriteButton.setImage(UIConstants.favoriteEmptyImage, for: .normal)
+        }
     }
 }
 

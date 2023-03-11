@@ -60,6 +60,7 @@ final class SignInViewModel:NSObject {
             
             let docData:[String:Any] = [
                 PrivateResources.usersNameKey: self.user.email.prefix(5),
+                PrivateResources.usersFavoriteTricksKey: [""],
                 PrivateResources.usersVisitedSpotsKey: [""],
                 PrivateResources.usersTransportKey: "",
                 PrivateResources.usersDoneTricksKey: [""],

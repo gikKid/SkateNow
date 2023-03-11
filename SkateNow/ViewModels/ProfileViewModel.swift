@@ -90,11 +90,15 @@ final class ProfileViewModel:NSObject {
                 }
                 guard let document = document else {return}
                 if let name = document.get(PrivateResources.usersNameKey) as? String {
-                    nameTextField.text = name
+                    DispatchQueue.main.async {
+                        nameTextField.text = name
+                    }
                 }
                 
                 if let transport = document.get(PrivateResources.usersTransportKey) as? String {
-                    transportButton.setTitle(transport, for: .normal)
+                    DispatchQueue.main.async {
+                        transportButton.setTitle(transport, for: .normal)
+                    }
                 }
                 
                 if let backgroundImagePath = document.get(PrivateResources.usersBackgorundImageURLKey) as? String {
